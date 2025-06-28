@@ -1,186 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yu Jen Chen - Portfolio</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external stylesheet -->
-    <style>
-        /* Simple CSS for basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
 
-        header h1 {
-            margin: 0;
-        }
+h2, h3 {
+    font-weight: bold;
+    color: #333;
+}
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 1rem;
-        }
+/* General container styling */
+section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-        }
+.project-category {
+    margin-bottom: 3rem;
+}
 
-        nav a:hover {
-            color: #ff6347;
-        }
+/* Category titles styling */
+.project-category h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
 
-        section {
-            padding: 2rem;
-        }
+/* Projects within each category */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+}
 
-        .about, .projects {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 2rem;
-        }
+.project {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
 
-        .about img {
-            border-radius: 50%;
-            max-width: 150px;
-            margin-right: 20px;
-        }
+.project:hover {
+    transform: translateY(-5px);
+}
 
-        .projects .project {
-            background-color: #fff;
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 30%;
-        }
+.project img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
 
-        .projects .project img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
+.project h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-        }
+.project p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
 
-        .contact {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
+.project a {
+    color: #ff6347;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
 
-        .contact a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-        }
-    </style>
-</head>
-<body>
+.project a:hover {
+    color: #e53e34;
+}
 
-    <header>
-        <h1>Yu Jen Chen</h1>
-        <p>Developer|</p>
-    </header>
+/* Responsiveness for smaller screens */
+@media (max-width: 1024px) {
+    .projects {
+        justify-content: center;
+    }
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#sideprojects">Side Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    .project {
+        width: 45%;
+    }
+}
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about">
-            <img src="your-photo.jpg" alt="Your Photo">
-            <div>
-                <p>TODO</p>
-            </div>
-        </div>
-    </section>
+@media (max-width: 768px) {
+    .project {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <img src="project1.jpg" alt="Project 1">
-                <h3>Visual-Based Human-Robot Collaboration System</h3>
-                <p>
-                    Development of a human-robot collaboration system using a stereo depth camera for 3D pose estimation. 
-                    The system integrates ROS2 Humble and MoveIt for real robot arm control, with Gazebo simulation used for testing and validation before deploying on the physical robot.
-                </p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project">
-                <img src="project2.jpg" alt="Project 2">
-                <h3>In-Door Autonomus Mobile Robot</h3>
-                <p>TBC</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project">
-                <img src="project3.jpg" alt="Project 3">
-                <h3>USB Power Meter</h3>
-                <p>TBC</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-    </section>
-    <section id="sideprojects">
-        <h2> Side Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <img src="project1.jpg" alt="Project 1">
-                <h3></h3>
-                <p>TBC</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project">
-                <img src="project1.jpg" alt="Project 1">
-                <h3>Self-Balancing Robot</h3>
-                <p>TBC</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project">
-                <img src="project1.jpg" alt="Project 1">
-                <h3>Soccer Robot for RoboCup Junior</h3>
-                <p>TBC</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-    </section>
-    
+    .project-category h3 {
+        font-size: 1.5rem;
+    }
+}
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me!</p>
-        <div class="contact">
-            <a href="mailto:youremail@example.com">Email</a>
-            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a> 
-        </div>
-    </section>
+@media (max-width: 480px) {
+    section {
+        padding: 1.5rem;
+    }
 
-    <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
-    </footer>
+    .projects {
+        gap: 1rem;
+    }
 
-</body>
-</html>
+    .project {
+        width: 100%;
+    }
+}
