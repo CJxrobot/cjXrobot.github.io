@@ -1,4 +1,4 @@
-/* Reset some basic styles */
+/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
@@ -11,34 +11,32 @@ body {
     line-height: 1.6;
 }
 
-h2, h3 {
+h2, h3, h4 {
     font-weight: bold;
     color: #333;
 }
 
-/* General container styling */
+/* Section Layout */
 section {
-    padding: 2rem;
+    padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Category Titles */
 .project-category {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
 }
 
-/* Category titles styling */
 .project-category h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #333;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
     border-bottom: 2px solid #333;
     padding-bottom: 0.5rem;
-    display: inline-block;
+    margin-bottom: 1rem;
 }
 
-/* Projects within each category */
+/* Projects Grid Layout */
 .projects {
     display: flex;
     flex-wrap: wrap;
@@ -53,7 +51,7 @@ section {
     width: 30%;
     padding: 1.5rem;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .project:hover {
@@ -69,7 +67,6 @@ section {
 .project h4 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: #333;
 }
 
 .project p {
@@ -82,14 +79,13 @@ section {
     color: #ff6347;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
 }
 
 .project a:hover {
     color: #e53e34;
 }
 
-/* Responsiveness for smaller screens */
+/* Responsiveness */
 @media (max-width: 1024px) {
     .projects {
         justify-content: center;
@@ -108,19 +104,5 @@ section {
 
     .project-category h3 {
         font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    section {
-        padding: 1.5rem;
-    }
-
-    .projects {
-        gap: 1rem;
-    }
-
-    .project {
-        width: 100%;
     }
 }
