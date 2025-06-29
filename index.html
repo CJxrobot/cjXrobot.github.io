@@ -203,13 +203,16 @@
 
         /* Styling for single images directly inside .project (like Segway) */
         .projects .project > img {
-            width: 100%; /* Ensure single images fill container width */
+            width: 75%; /* Reduced to 75% of its container width */
             height: auto; /* Maintain aspect ratio */
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.08);
             margin-bottom: 1.2rem; /* Add consistent margin below image */
             flex-shrink: 0;
+            display: block; /* Ensure it behaves as a block for margin auto */
+            margin-left: auto; /* Center the image */
+            margin-right: auto; /* Center the image */
         }
 
         .project-content { /* Wrapper for text content inside a project card */
