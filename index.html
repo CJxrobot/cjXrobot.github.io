@@ -134,13 +134,13 @@
             margin: 0 auto; /* Center the projects container */
         }
 
-        /* Individual Project Card */
+        /* Individual Project Card (Default Vertical) */
         .projects .project {
             background-color: rgba(0, 0, 0, 0.4); /* Transparent black */
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-            flex-direction: column; /* Always vertical stack for all content within the card */
+            flex-direction: column; /* Default: vertical stack for all content within the card */
             align-items: center;
             text-align: center;
             width: 100%; /* Make each project card full width */
@@ -201,23 +201,45 @@
         }
 
 
-        /* Styling for single images directly inside .project (like Segway) */
-        .projects .project > img {
-            width: 75%; /* Reduced to 75% of its container width */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            margin-bottom: 1.2rem; /* Add consistent margin below image */
-            flex-shrink: 0;
-            display: block; /* Ensure it behaves as a block for margin auto */
-            margin-left: auto; /* Center the image */
-            margin-right: auto; /* Center the image */
+        /* Styles for Self-Balancing Robot (Segway) Project - Horizontal Layout */
+        .projects .project.project-horizontal-layout {
+            text-align: left; /* Align text left for this specific horizontal project */
         }
+        @media (min-width: 768px) {
+            .projects .project.project-horizontal-layout {
+                flex-direction: row; /* Image | Text on larger screens */
+                align-items: flex-start; /* Align content to the top */
+            }
+            .projects .project.project-horizontal-layout > img {
+                flex-basis: 35%; /* Image takes 35% of the horizontal space */
+                max-width: 35%; /* Ensure it doesn't grow beyond this */
+                margin-right: 25px; /* Space between image and text */
+                margin-bottom: 0; /* Remove bottom margin when horizontal */
+                width: 100%; /* Ensure image fills its flex-basis */
+                display: block; /* Ensure it behaves as block for flex sizing */
+                margin-left: 0; /* Remove auto margins to align left */
+                margin-right: 25px; /* Specific right margin for horizontal spacing */
+            }
+            .projects .project.project-horizontal-layout .project-content {
+                flex-basis: 65%; /* Text takes 65% of the horizontal space */
+                max-width: 65%;
+                text-align: left; /* Align text content left within this horizontal project */
+            }
+        }
+        /* Restore original single image sizing for Segway on mobile */
+        @media (max-width: 767px) {
+             .projects .project.project-horizontal-layout > img {
+                width: 50%; /* Revert to 50% for mobile stack */
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 1.2rem;
+             }
+        }
+
 
         .project-content { /* Wrapper for text content inside a project card */
             width: 100%;
-            text-align: center; /* Center align all text within project cards */
+            text-align: center; /* Default center align for other project cards on mobile */
         }
 
         .projects .project h3 {
@@ -458,6 +480,18 @@
     <section id="sideprojects">
         <h2>Personal Projects</h2>
         <div class="projects">
+            <div class="project project-horizontal-layout"> <!-- Added class for horizontal layout -->
+                <!-- Image for Self-Balancing Robot -->
+                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" alt="Self-Balancing Robot">
+                <div class="project-content">
+                    <h3>Self-Balancing Robot</h3>
+                    <p>
+                        Designed and developed a self-balancing robot prototype based on IMU sensors.
+                        Implemented PID control algorithms, motor drive firmware, and performed kinematics
+                        tuning to maintain stable robot posture in dynamic environments.
+                    </p>
+                </div>
+            </div>
             <div class="project">
                 <div class="project-content">
                     <h3>Robot Competition Kit Full-Stack Development</h3>
@@ -504,18 +538,6 @@
                     <p>
                         **Software & Manufacturing:**
                         Developed low-level **C/C++** control libraries for precise **omniwheel motor control**, **ultrasonic and light sensor data acquisition**, and image processing, ensuring robust robot performance. Performed robot 3D modeling, and participated in structural component manufacturing (3D printing/CNC/laser cutting) and robot assembly. Completed prototype development and testing, and drove small-batch production.
-                    </p>
-                </div>
-            </div>
-            <div class="project">
-                <!-- Image for Self-Balancing Robot -->
-                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" alt="Self-Balancing Robot">
-                <div class="project-content">
-                    <h3>Self-Balancing Robot</h3>
-                    <p>
-                        Designed and developed a self-balancing robot prototype based on IMU sensors.
-                        Implemented PID control algorithms, motor drive firmware, and performed kinematics
-                        tuning to maintain stable robot posture in dynamic environments.
                     </p>
                 </div>
             </div>
