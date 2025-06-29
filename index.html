@@ -115,7 +115,7 @@
             border-radius: 50%;
             max-width: 150px;
             height: 150px;
-            object-fit: cover;
+            object-fit: cover; /* Ensures image covers the area, might crop */
             margin-right: 20px;
             margin-bottom: 20px;
             border: 4px solid rgba(255, 255, 255, 0.2); /* Subtle light transparent border */
@@ -201,12 +201,23 @@
         }
 
         .projects .project .project-images-container img {
-            max-width: 100%;
-            height: auto;
+            width: 100%; /* Ensure images fill container width */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle transparent border for images */
         }
+
+        /* Styling for single images directly inside .project (like Segway) */
+        .projects .project > img {
+            width: 100%; /* Ensure single images fill container width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 1.2rem; /* Add consistent margin below image */
+        }
+
 
         .projects .project h3 {
             font-size: 1.8rem;
@@ -218,11 +229,11 @@
             font-size: 1rem;
             line-height: 1.6;
             color: #ccc;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
+            margin-bottom: 1.5rem; /* Increased margin for consistency */
+            flex-grow: 1; /* Allow description to take up available space */
         }
 
-        .projects .project a {
+        .projects .project a { /* Styling for buttons */
             display: inline-block;
             background-color: rgba(255, 255, 255, 0.1); /* Lighter transparent button */
             color: white;
@@ -233,6 +244,8 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             margin-top: 0.8rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            /* Removed this if you only want text and no buttons, but keeping for now if 'a' tags are still used elsewhere */
+            /* If no buttons are desired at all, this entire rule set can be removed. */
         }
 
         .projects .project a:hover {
@@ -321,7 +334,7 @@
                     and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time
                     path and velocity replanning for safe human-robot collaboration.
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
             <div class="project">
                 <!-- Placeholder image for In-Door Autonomous Mobile Robot -->
@@ -335,7 +348,7 @@
                     including high-level software framework setup, low-level controller firmware, and circuit
                     design (motor control, sensor communication).
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
             <div class="project">
                 <!-- Placeholder image for ROSBot Analysis -->
@@ -351,7 +364,7 @@
                     Participated in evaluating the new automated control framework XITO, conducting
                     technical tests and feasibility analysis, and providing decision-making recommendations.
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
         </div>
     </section>
@@ -373,18 +386,18 @@
                     and participated in structural component manufacturing (3D printing/CNC/laser cutting)
                     and robot assembly. Completed prototype development and testing, and drove small-batch production.
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
             <div class="project">
-                <!-- Placeholder image for Self-Balancing Robot -->
-                <img src="https://placehold.co/400x250/3a3a3a/EEEEEE?text=Self-Balancing+Robot" alt="Self-Balancing Robot">
+                <!-- Image for Self-Balancing Robot -->
+                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" alt="Self-Balancing Robot">
                 <h3>Self-Balancing Robot</h3>
                 <p>
                     Designed and developed a self-balancing robot prototype based on IMU sensors.
                     Implemented PID control algorithms, motor drive firmware, and performed kinematics
                     tuning to maintain stable robot posture in dynamic environments.
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
             <div class="project">
                 <!-- Placeholder image for Soccer Robot -->
@@ -396,7 +409,7 @@
                     tactical decision-making logic for software and firmware integration, enabling the
                     robot to autonomously seek the ball and shoot.
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
             <div class="project">
                 <img src="https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter" alt="USB Power Meter">
@@ -407,7 +420,7 @@
                     acquisition and display of voltage, current, and power data, and included
                     data logging and communication interfaces.
                 </p>
-                <a href="#">View Project</a>
+                <!-- Removed <a href="#">View Project</a> -->
             </div>
         </div>
     </section>
