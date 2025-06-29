@@ -176,12 +176,13 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: block; /* Ensure images behave as blocks */
             margin: 0 auto; /* Center single images if container is wider */
+            cursor: pointer; /* Indicate clickable */
             transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
         }
         /* Interactive scaling for images in project-images-container */
         .project-images-container img:hover,
         .project-images-container img:active {
-            transform: scale(1.08); /* Scales image up by 8% on hover/click */
+            transform: scale(1.15); /* Scales image up by 15% on hover/click */
         }
 
         /* Horizontal image layout for project-images-container on larger screens */
@@ -225,12 +226,13 @@
                 display: block; /* Ensure it behaves as block for flex sizing */
                 margin-left: 0; /* Remove auto margins to align left */
                 margin-right: 25px; /* Specific right margin for horizontal spacing */
+                cursor: pointer; /* Indicate clickable */
                 transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
             }
             /* Interactive scaling for Segway image */
             .projects .project.project-horizontal-layout > img:hover,
             .projects .project.project-horizontal-layout > img:active {
-                transform: scale(1.08); /* Scales image up by 8% on hover/click */
+                transform: scale(1.15); /* Scales image up by 15% on hover/click */
             }
 
             .projects .project.project-horizontal-layout .project-content {
@@ -246,7 +248,7 @@
                 margin-left: auto;
                 margin-right: auto;
                 margin-bottom: 1.2rem;
-                /* No specific hover/active style here for mobile for simplicity, can be added if needed */
+                cursor: pointer; /* Indicate clickable */
              }
         }
 
@@ -330,12 +332,13 @@
             border-radius: 6px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer; /* Indicate clickable */
             transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
         }
         /* Interactive scaling for images in component-image-area */
         .component-image-area img:hover,
         .component-image-area img:active {
-            transform: scale(1.08); /* Scales image up by 8% on hover/click */
+            transform: scale(1.15); /* Scales image up by 15% on hover/click */
         }
 
         /* Horizontal images within component-image-area on wider views */
@@ -403,6 +406,77 @@
             font-size: 0.9rem;
             margin-top: 3rem;
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Modal (Pop-up) Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Very dark transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top of everything */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(5px); /* Optional: blur background slightly */
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: rgba(26, 26, 26, 0.9); /* Darker background for content */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh; /* Limit height to prevent overflow on smaller screens */
+            display: block;
+            border-radius: 8px;
+            object-fit: contain; /* Ensure image fits without cropping */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close-button:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -580,7 +654,7 @@
             <div class="project">
                 <div class="project-images-container">
                     <img src="https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter+Device" alt="USB Power Meter Device">
-                    <img src="https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB" alt="USB Power Meter PCB">
+                    <img src="https://https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB" alt="USB Power Meter PCB">
                 </div>
                 <div class="project-content">
                     <h3>USB Power Meter</h3>
@@ -607,6 +681,67 @@
     <footer>
         <p>&copy; 2025 Yu Jen Chen. All rights reserved.</p>
     </footer>
+
+    <!-- Image Modal (Pop-up) -->
+    <div id="imageModal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="closeModal" class="modal-close-button">&times;</button>
+            <img src="" alt="Enlarged Image" id="modalImage">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageModal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeModalButton = document.getElementById('closeModal');
+
+            // Select all images that should trigger the modal
+            const galleryImages = document.querySelectorAll(
+                '.project-images-container img, ' +
+                '.projects .project.project-horizontal-layout > img, ' +
+                '.component-image-area img'
+            );
+
+            // Function to open the modal
+            const openModal = (src, alt) => {
+                modalImage.src = src;
+                modalImage.alt = alt;
+                imageModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            };
+
+            // Function to close the modal
+            const closeModal = () => {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            };
+
+            // Add click listeners to all gallery images
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    openModal(img.src, img.alt);
+                });
+            });
+
+            // Close modal when close button is clicked
+            closeModalButton.addEventListener('click', closeModal);
+
+            // Close modal when clicking outside the image (on the overlay)
+            imageModal.addEventListener('click', (event) => {
+                if (event.target === imageModal) {
+                    closeModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && imageModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
