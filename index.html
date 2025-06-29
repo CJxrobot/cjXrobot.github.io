@@ -12,7 +12,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Base dark background remains for overall depth */
+            background-color: #1a1a1a; /* Base dark background for overall depth */
             color: #e0e0e0; /* Light grey text for contrast */
             line-height: 1.6;
         }
@@ -68,11 +68,11 @@
             transform: translateY(-2px);
         }
 
-        /* Section general styling */
+        /* Section general styling: Full width background, content constrained by inner max-width */
         section {
-            padding: 3rem 1rem;
-            /* Removed max-width to allow full width */
-            margin: 0 auto;
+            padding: 3rem 3rem; /* Increased horizontal padding for content */
+            width: 100%; /* Makes the section background span full width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         h2 {
@@ -96,35 +96,26 @@
             border-radius: 2px;
         }
 
-        /* About Section - similar to original layout */
+        /* About Section - styling for text only */
         .about {
             display: flex;
-            flex-direction: column; /* Stack on small screens */
+            flex-direction: column; /* Always vertical */
             align-items: center;
             justify-content: center;
             margin-bottom: 2rem;
-            background-color: rgba(0, 0, 0, 0.4); /* More transparent black */
+            background-color: rgba(0, 0, 0, 0.4); /* Transparent black */
             padding: 2.5rem;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle transparent border */
-            color: #f0f0f0; /* Light text */
-        }
-
-        .about img {
-            border-radius: 50%;
-            max-width: 150px;
-            height: 150px;
-            object-fit: cover; /* Ensures image covers the area, might crop */
-            margin-right: 20px;
-            margin-bottom: 20px;
-            border: 4px solid rgba(255, 255, 255, 0.2); /* Subtle light transparent border */
-            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.05); /* Very subtle transparent glow */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f0f0f0;
+            max-width: 960px; /* Constrain width of about content for readability within full section */
+            margin: 0 auto 2rem auto; /* Center it within the full-width section */
         }
 
         .about div {
-            text-align: center;
-            max-width: 800px; /* Keep text readable, even if parent is full width */
+            text-align: center; /* Center text as there's no image */
+            width: 100%;
         }
         .about div p {
             font-size: 1.1rem;
@@ -132,43 +123,31 @@
             margin-bottom: 1rem;
         }
 
-        /* About section for larger screens (original flex layout) */
-        @media (min-width: 768px) {
-            .about {
-                flex-direction: row;
-                text-align: left;
-                padding: 3rem;
-            }
-            .about img {
-                margin-bottom: 0;
-            }
-            .about div {
-                text-align: left;
-            }
-        }
-
-        /* Projects Section - similar to original layout */
+        /* Projects Section - Main Container for the grid of project cards */
         .projects {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 30px;
+            justify-content: center; /* Center project cards within the section */
+            gap: 30px; /* Space between project cards */
             margin-bottom: 2rem;
+            max-width: 100%; /* Allow project container to span full width of section padding */
+            margin: 0 auto; /* Center the projects container */
         }
 
+        /* Individual Project Card */
         .projects .project {
-            background-color: rgba(0, 0, 0, 0.4); /* More transparent black */
+            background-color: rgba(0, 0, 0, 0.4); /* Transparent black */
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-            text-align: center;
-            width: 100%;
-            max-width: 350px;
-            display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Always vertical stack for all content within the card */
             align-items: center;
+            text-align: center;
+            width: 100%; /* Make each project card full width */
+            max-width: 960px; /* Limit max-width for readability on very large screens */
+            display: flex;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle transparent border */
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: #f0f0f0;
         }
 
@@ -177,36 +156,50 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
 
-        /* Responsive project grid for 3 columns (original 30% width) */
-        @media (min-width: 768px) {
-            .projects .project {
-                width: calc(33.33% - 20px);
-            }
-        }
-        /* Further adjustment for very large screens or specific number of items */
-        @media (min-width: 1200px) {
-            .projects .project {
-                width: calc(33.33% - 20px);
-            }
-        }
-
-
-        /* Multi-image container within a project card */
+        /* Multi-image container within a project card (Cobot, Soccer, USB Meter) */
         .project-images-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Default: stack images vertically on mobile */
             gap: 10px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.2rem; /* Consistent spacing below images */
             width: 100%;
+            flex-shrink: 0;
+            justify-content: center; /* Center images horizontally when in a row */
+            align-items: center; /* Center images vertically when in a row */
         }
 
-        .projects .project .project-images-container img {
-            width: 100%; /* Ensure images fill container width */
+        .project-images-container img {
+            width: 100%; /* Default: images take full width of container on mobile */
             height: auto; /* Maintain aspect ratio */
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle transparent border for images */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: block; /* Ensure images behave as blocks */
+            margin: 0 auto; /* Center single images if container is wider */
         }
+
+        /* Horizontal image layout for project-images-container on larger screens */
+        @media (min-width: 550px) { /* Applies to screens wider than typical mobile portrait */
+            .project-images-container {
+                flex-direction: row; /* Images display horizontally */
+                flex-wrap: wrap; /* Allow wrapping if too many images */
+            }
+            .project-images-container img {
+                width: calc(33.33% - 7px); /* Three images per row, accounting for gap */
+                min-width: 100px; /* Prevent images from becoming too small */
+                margin-bottom: 0; /* Reset bottom margin for horizontal flow */
+            }
+            /* Specific adjustments for 2 images in a container */
+            .project-images-container.two-images img {
+                width: calc(50% - 5px); /* Two images per row, accounting for gap */
+            }
+            /* For odd number of images, make the last one full width if it's the only one in its row */
+            .project-images-container img:nth-child(3n+1):last-child:nth-child(odd),
+            .project-images-container img:nth-child(3n+2):last-child:nth-child(even) {
+                 width: 100%; /* Make the last image full width if it's an odd one out */
+            }
+        }
+
 
         /* Styling for single images directly inside .project (like Segway) */
         .projects .project > img {
@@ -216,8 +209,13 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.08);
             margin-bottom: 1.2rem; /* Add consistent margin below image */
+            flex-shrink: 0;
         }
 
+        .project-content { /* Wrapper for text content inside a project card */
+            width: 100%;
+            text-align: center; /* Center align all text within project cards */
+        }
 
         .projects .project h3 {
             font-size: 1.8rem;
@@ -229,28 +227,106 @@
             font-size: 1rem;
             line-height: 1.6;
             color: #ccc;
-            margin-bottom: 1.5rem; /* Increased margin for consistency */
-            flex-grow: 1; /* Allow description to take up available space */
+            margin-bottom: 0; /* Remove bottom margin if no buttons */
+            flex-grow: 1; /* Allows text to take up available space */
         }
 
-        .projects .project a { /* Styling for buttons */
-            display: inline-block;
-            background-color: rgba(255, 255, 255, 0.1); /* Lighter transparent button */
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 0.8rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            /* Removed this if you only want text and no buttons, but keeping for now if 'a' tags are still used elsewhere */
-            /* If no buttons are desired at all, this entire rule set can be removed. */
+        /* NEW STYLES FOR ROBOT KIT COMPONENTS LAYOUT */
+        .robot-kit-components-container {
+            display: flex;
+            flex-direction: column; /* Default: vertical stack on mobile */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Gap between component items */
+            width: 100%; /* Takes full width of parent project card */
+            margin-top: 1.5rem; /* Space from the intro paragraph */
+            margin-bottom: 1.5rem; /* Space before the software paragraph */
         }
 
-        .projects .project a:hover {
-            background-color: rgba(255, 255, 255, 0.2); /* Slightly brighter transparent on hover */
-            transform: translateY(-2px);
+        @media (min-width: 768px) { /* On larger screens, arrange components horizontally */
+            .robot-kit-components-container {
+                flex-direction: row; /* Make component items go side-by-side */
+                align-items: flex-start; /* ALIGN ITEMS TO TOP HERE */
+            }
+        }
+
+        .robot-kit-component-item {
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter background for each component item */
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column; /* Image(s) and text stack vertically within each component item */
+            align-items: center;
+            text-align: center;
+            width: 100%; /* Full width on mobile */
+            max-width: 300px; /* Constrain individual component item width for readability */
+        }
+
+        @media (min-width: 768px) {
+            .robot-kit-component-item {
+                flex: 1; /* Distribute space equally */
+                max-width: calc(33.33% - 20px); /* 3 columns with gap */
+                min-width: 250px; /* Ensure they don't get too small */
+            }
+            .robot-kit-components-container:has(.robot-kit-component-item:nth-child(2):last-child) .robot-kit-component-item {
+                 max-width: calc(50% - 15px); /* If only two items, make them 50% */
+            }
+        }
+
+        .component-image-area {
+            display: flex;
+            flex-direction: column; /* Images stack vertically within this area */
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 1rem; /* Space between images and text */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .component-image-area img {
+            max-width: 100%; /* Ensure images fit within their column */
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Horizontal images within component-image-area on wider views */
+        @media (min-width: 480px) { /* Apply horizontal layout for component images on larger mobile/tablet */
+            .component-image-area {
+                flex-direction: row; /* Images display horizontally */
+                flex-wrap: wrap;
+            }
+            .component-image-area img {
+                width: calc(50% - 5px); /* Try 2 images per row for compactness */
+                min-width: 100px; /* Prevent images from becoming too small */
+            }
+            .component-image-area img:nth-child(3n+1):last-child:nth-child(odd),
+            .component-image-area img:nth-child(3n+2):last-child:nth-child(even) {
+                 width: 100%; /* Make the last image full width if it's an odd one out, for better balance */
+            }
+        }
+
+
+        .component-text-area {
+            width: 100%;
+            text-align: center;
+        }
+
+        .component-text-area h4 {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .component-text-area p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+            margin-bottom: 0;
         }
 
         /* Contact Section */
@@ -277,7 +353,7 @@
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.7); /* More transparent black */
+            background-color: rgba(0, 0, 0, 0.7);
             color: #aaa;
             font-size: 0.9rem;
             margin-top: 3rem;
@@ -302,8 +378,6 @@
     <section id="about">
         <h2>About Me</h2>
         <div class="about">
-            <!-- Placeholder image for profile photo -->
-            <img src="https://placehold.co/200x200/424242/E0E0E0?text=Your+Photo" alt="Yu Jen Chen's Profile Photo">
             <div>
                 <p>
                     Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development.
@@ -317,54 +391,63 @@
         <h2>Main Projects</h2>
         <div class="projects">
             <div class="project">
-                <h3>Collaborative Robot System Development (Stereo Depth Camera Based)</h3>
                 <div class="project-images-container">
                     <!-- Images for Visual-Based Human-Robot Collaboration System -->
                     <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true" alt="Collaborative Robot Human Pose Estimation">
                     <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_Demo.jpg?raw=true" alt="Collaborative Robot System Demo">
                     <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/OBA.jpg?raw=true" alt="Collaborative Robot Obstacle Avoidance">
                 </div>
-                <p>
-                    Independently developed a collaborative robot system based on ROS2 / Moveit 2,
-                    implementing real-time obstacle avoidance and human-robot collaboration algorithms
-                    using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment
-                    setup, testing, and validation of the HRC system algorithms.
-                    Employed a stereo depth camera and human skeleton identification models to estimate
-                    3D human skeletons. Calculated the positional relationship between human skeletons
-                    and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time
-                    path and velocity replanning for safe human-robot collaboration.
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-content">
+                    <h3>Collaborative Robot System Development (Stereo Depth Camera Based)</h3>
+                    <p>
+                        Independently developed a collaborative robot system based on ROS2 / Moveit 2,
+                        implementing real-time obstacle avoidance and human-robot collaboration algorithms
+                        using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment
+                        setup, testing, and validation of the HRC system algorithms.
+                        Employed a stereo depth camera and human skeleton identification models to estimate
+                        3D human skeletons. Calculated the positional relationship between human skeletons
+                        and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time
+                        path and velocity replanning for safe human-robot collaboration.
+                    </p>
+                </div>
             </div>
             <div class="project">
-                <!-- Placeholder image for In-Door Autonomous Mobile Robot -->
-                <img src="https://placehold.co/400x250/3a3a3a/CCCCCC?text=In-Door+AMR" alt="In-Door Autonomous Mobile Robot">
-                <h3>Embedded & Mobile Robot Development (AMR)</h3>
-                <p>
-                    Responsible for MCU firmware and electronic circuit design for optoelectronic product lines
-                    (e.g., laser rangefinders, camera modules). Developed edge AI modules based on SoC and
-                    FreeRTOS, integrating facial/human body tracking models. Managed firmware, circuit design,
-                    verification, and commercialization. Led the ROS2 mobile robot platform development,
-                    including high-level software framework setup, low-level controller firmware, and circuit
-                    design (motor control, sensor communication).
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-images-container">
+                    <!-- Placeholder images for In-Door Autonomous Mobile Robot -->
+                    <img src="https://placehold.co/400x250/3a3a3a/CCCCCC?text=AMR+Dev" alt="Autonomous Mobile Robot Development">
+                    <img src="https://placehold.co/400x250/3a3a3a/999999?text=Edge+AI" alt="Edge AI Module Development">
+                </div>
+                <div class="project-content">
+                    <h3>Embedded & Mobile Robot Development (AMR)</h3>
+                    <p>
+                        Responsible for MCU firmware and electronic circuit design for optoelectronic product lines
+                        (e.g., laser rangefinders, camera modules). Developed edge AI modules based on SoC and
+                        FreeRTOS, integrating facial/human body tracking models. Managed firmware, circuit design,
+                        verification, and commercialization. Led the ROS2 mobile robot platform development,
+                        including high-level software framework setup, low-level controller firmware, and circuit
+                        design (motor control, sensor communication).
+                    </p>
+                </div>
             </div>
             <div class="project">
-                <!-- Placeholder image for ROSBot Analysis -->
-                <img src="https://placehold.co/400x250/3a3a3a/BBBBBB?text=ROSBot+Analysis" alt="ROSBot Autonomous Mobile Robot Development and Comparison Analysis">
-                <h3>ROSBot Autonomous Mobile Robot Development & Comparative Analysis</h3>
-                <p>
-                    Developed ROSBot mobile robots based on both XITO framework and ROS2 platform,
-                    implementing high-level control, communication, and sensor integration.
-                    Conducted a systematic comparison of functionalities, performance, and scalability.
-                    Repaired and redesigned ROSBot mechanisms and control circuits to improve hardware
-                    stability and scalability. Developed dedicated Bash scripts for ROSBot to automate
-                    cruising demonstration tasks, enhancing efficiency and stability.
-                    Participated in evaluating the new automated control framework XITO, conducting
-                    technical tests and feasibility analysis, and providing decision-making recommendations.
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-images-container">
+                    <!-- Placeholder images for ROSBot Analysis -->
+                    <img src="https://placehold.co/400x250/3a3a3a/BBBBBB?text=ROSBot+Platform" alt="ROSBot Autonomous Mobile Robot Platform">
+                    <img src="https://placehold.co/400x250/3a3a3a/888888?text=XITO+vs+ROS2" alt="XITO vs ROS2 Comparison">
+                </div>
+                <div class="project-content">
+                    <h3>ROSBot Autonomous Mobile Robot Development & Comparative Analysis</h3>
+                    <p>
+                        Developed ROSBot mobile robots based on both XITO framework and ROS2 platform,
+                        implementing high-level control, communication, and sensor integration.
+                        Conducted a systematic comparison of functionalities, performance, and scalability.
+                        Repaired and redesigned ROSBot mechanisms and control circuits to improve hardware
+                        stability and scalability. Developed dedicated Bash scripts for ROSBot to automate
+                        cruising demonstration tasks, enhancing efficiency and stability.
+                        Participated in evaluating the new automated control framework XITO, conducting
+                        technical tests and feasibility analysis, and providing decision-making recommendations.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -373,54 +456,96 @@
         <h2>Personal Projects</h2>
         <div class="projects">
             <div class="project">
-                <!-- Placeholder image for Robot Competition Kit Development -->
-                <img src="https://placehold.co/400x250/3a3a3a/DDDDDD?text=Robot+Kit+Dev" alt="Robot Competition Kit Development">
-                <h3>Robot Competition Kit Full-Stack Development</h3>
-                <p>
-                    Led the full-stack software and hardware development of robot competition kits,
-                    covering the entire product lifecycle from concept to small-batch manufacturing.
-                    Responsible for main control board and sensor circuit schematic/PCB design,
-                    and participated in circuit board manufacturing, soldering, and assembly.
-                    Developed low-level control libraries (C/C++) for core functions like motor control,
-                    sensor data acquisition, and image processing. Performed robot 3D modeling,
-                    and participated in structural component manufacturing (3D printing/CNC/laser cutting)
-                    and robot assembly. Completed prototype development and testing, and drove small-batch production.
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-content">
+                    <h3>Robot Competition Kit Full-Stack Development</h3>
+                    <p>
+                        Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing.
+                    </p>
+
+                    <div class="robot-kit-components-container">
+                        <div class="robot-kit-component-item">
+                            <div class="component-image-area">
+                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true" alt="Omniwheel for Robot Kit (Carbon Fiber, 6061 Aluminum)">
+                            </div>
+                            <div class="component-text-area">
+                                <h4>Omniwheels</h4>
+                                <p>Designed and integrated robust omniwheels featuring **carbon fiber and 6061 aluminum construction** for enhanced durability and multi-directional movement. Multiple wheels were used to increase the overall rigidity and hardness of the robot's drive system.</p>
+                            </div>
+                        </div>
+
+                        <div class="robot-kit-component-item">
+                            <div class="component-image-area">
+                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true" alt="Custom 4-in-1 ToF Sensor Board">
+                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/2to4Encoder.png?raw=true" alt="2-to-4 Encoder for ToF Sensor">
+                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tofsensorbatch.jpg?raw=true" alt="ToF Sensor Batch">
+                            </div>
+                            <div class="component-text-area">
+                                <h4>Custom 4-in-1 ToF Sensor Board</h4>
+                                <p>Developed a specialized board for VL53L0X Time-of-Flight sensors, optimizing I2C address assignment and XSHUT pin control. This innovative solution enabled control of multiple sensors using only 2 pins via a logic gate, significantly reducing pin count requirements for the main controller.</p>
+                            </div>
+                        </div>
+
+                        <div class="robot-kit-component-item">
+                            <div class="component-image-area">
+                                 <!-- Placeholder images for Main Control Board & Light Sensors -->
+                                <img src="https://placehold.co/400x250/3a3a3a/DDDDDD?text=Main+Control+Board" alt="Robot Main Control Board">
+                                <img src="https://placehold.co/400x250/3a3a3a/BBBBBB?text=Light+Sensors" alt="Robot Light Sensors (LDRs)">
+                            </div>
+                            <div class="component-text-area">
+                                <h4>Main Control Board & Light Sensors</h4>
+                                <p>Designed and manufactured the primary control board for the robot, serving as the central processing unit. Integrated Light Dependent Resistors (LDRs) for ambient light detection, enabling environmental interaction and basic navigation functionalities.</p>
+                            </div>
+                        </div>
+                    </div> <!-- End robot-kit-components-container -->
+
+                    <p>
+                        **Software & Manufacturing:**
+                        Developed low-level **C/C++** control libraries for precise **omniwheel motor control**, **ultrasonic and light sensor data acquisition**, and image processing, ensuring robust robot performance. Performed robot 3D modeling, and participated in structural component manufacturing (3D printing/CNC/laser cutting) and robot assembly. Completed prototype development and testing, and drove small-batch production.
+                    </p>
+                </div>
             </div>
             <div class="project">
                 <!-- Image for Self-Balancing Robot -->
                 <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" alt="Self-Balancing Robot">
-                <h3>Self-Balancing Robot</h3>
-                <p>
-                    Designed and developed a self-balancing robot prototype based on IMU sensors.
-                    Implemented PID control algorithms, motor drive firmware, and performed kinematics
-                    tuning to maintain stable robot posture in dynamic environments.
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-content">
+                    <h3>Self-Balancing Robot</h3>
+                    <p>
+                        Designed and developed a self-balancing robot prototype based on IMU sensors.
+                        Implemented PID control algorithms, motor drive firmware, and performed kinematics
+                        tuning to maintain stable robot posture in dynamic environments.
+                    </p>
+                </div>
             </div>
             <div class="project">
-                <!-- Placeholder image for Soccer Robot -->
-                <img src="https://placehold.co/400x250/3a3a3a/AAAAAA?text=Soccer+Robot" alt="Soccer Robot">
-                <h3>RoboCup Junior Soccer Robot</h3>
-                <p>
-                    Participated in the development of a RoboCup Junior soccer robot, responsible for
-                    the visual system (ball detection and localization), motion control modules, and
-                    tactical decision-making logic for software and firmware integration, enabling the
-                    robot to autonomously seek the ball and shoot.
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-images-container">
+                    <!-- Placeholder images for Soccer Robot -->
+                    <img src="https://placehold.co/400x250/3a3a3a/AAAAAA?text=Soccer+Robot+Visuals" alt="Soccer Robot Visual System">
+                    <img src="https://placehold.co/400x250/3a3a3a/777777?text=Soccer+Robot+Control" alt="Soccer Robot Motion Control">
+                </div>
+                <div class="project-content">
+                    <h3>RoboCup Junior Soccer Robot</h3>
+                    <p>
+                        Participated in the development of a RoboCup Junior soccer robot, responsible for
+                        the visual system (ball detection and localization), motion control modules, and
+                        tactical decision-making logic for software and firmware integration, enabling the
+                        robot to autonomously seek the ball and shoot.
+                    </p>
+                </div>
             </div>
             <div class="project">
-                <img src="https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter" alt="USB Power Meter">
-                <h3>USB Power Meter</h3>
-                <p>
-                    Designed and developed a USB interface power meter prototype, responsible for
-                    circuit schematic, PCB layout, and firmware programming. Achieved precise
-                    acquisition and display of voltage, current, and power data, and included
-                    data logging and communication interfaces.
-                </p>
-                <!-- Removed <a href="#">View Project</a> -->
+                <div class="project-images-container">
+                    <img src="https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter+Device" alt="USB Power Meter Device">
+                    <img src="https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB" alt="USB Power Meter PCB">
+                </div>
+                <div class="project-content">
+                    <h3>USB Power Meter</h3>
+                    <p>
+                        Designed and developed a USB interface power meter prototype, responsible for
+                        circuit schematic, PCB layout, and firmware programming. Achieved precise
+                        acquisition and display of voltage, current, and power data, and included
+                        data logging and communication interfaces.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
