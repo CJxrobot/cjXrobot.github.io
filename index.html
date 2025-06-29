@@ -176,6 +176,12 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: block; /* Ensure images behave as blocks */
             margin: 0 auto; /* Center single images if container is wider */
+            transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
+        }
+        /* Interactive scaling for images in project-images-container */
+        .project-images-container img:hover,
+        .project-images-container img:active {
+            transform: scale(1.08); /* Scales image up by 8% on hover/click */
         }
 
         /* Horizontal image layout for project-images-container on larger screens */
@@ -219,7 +225,14 @@
                 display: block; /* Ensure it behaves as block for flex sizing */
                 margin-left: 0; /* Remove auto margins to align left */
                 margin-right: 25px; /* Specific right margin for horizontal spacing */
+                transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
             }
+            /* Interactive scaling for Segway image */
+            .projects .project.project-horizontal-layout > img:hover,
+            .projects .project.project-horizontal-layout > img:active {
+                transform: scale(1.08); /* Scales image up by 8% on hover/click */
+            }
+
             .projects .project.project-horizontal-layout .project-content {
                 flex-basis: 65%; /* Text takes 65% of the horizontal space */
                 max-width: 65%;
@@ -233,6 +246,7 @@
                 margin-left: auto;
                 margin-right: auto;
                 margin-bottom: 1.2rem;
+                /* No specific hover/active style here for mobile for simplicity, can be added if needed */
              }
         }
 
@@ -316,6 +330,12 @@
             border-radius: 6px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
+        }
+        /* Interactive scaling for images in component-image-area */
+        .component-image-area img:hover,
+        .component-image-area img:active {
+            transform: scale(1.08); /* Scales image up by 8% on hover/click */
         }
 
         /* Horizontal images within component-image-area on wider views */
