@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Yu Jen Chen - Portfolio</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external stylesheet -->
     <style>
         /* Base styling for transparent dark theme */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1a1a1a; /* Base dark background for overall depth */
@@ -150,11 +148,34 @@
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: #f0f0f0;
+            position: relative; /* Needed for absolute positioning of status tag */
         }
 
         .projects .project:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Styles for project status tag */
+        .project .status-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+
+        .status-tag.done {
+            background-color: #38a169; /* Green */
+        }
+
+        .status-tag.undergoing {
+            background-color: #f6ad55; /* Orange */
         }
 
         /* Multi-image container within a project card (Cobot, Soccer, USB Meter) */
@@ -204,7 +225,7 @@
             /* For odd number of images, make the last one full width if it's the only one in its row */
             .project-images-container img:nth-child(3n+1):last-child:nth-child(odd),
             .project-images-container img:nth-child(3n+2):last-child:nth-child(even) {
-                 width: 100%; /* Make the last image full width if it's an odd one out */
+                    width: 100%; /* Make the last image full width if it's an odd one out */
             }
         }
 
@@ -220,7 +241,7 @@
             }
             .projects .project.project-horizontal-layout > img {
                 flex-basis: 35%; /* Image takes 35% of the horizontal space */
-                max-width: 35%; /* Ensure it doesn't grow beyond this */
+                max-width: 35%;
                 margin-right: 25px; /* Space between image and text */
                 margin-bottom: 0; /* Remove bottom margin when horizontal */
                 width: 100%; /* Ensure image fills its flex-basis */
@@ -313,7 +334,7 @@
                 min-width: 250px; /* Ensure they don't get too small */
             }
             .robot-kit-components-container:has(.robot-kit-component-item:nth-child(2):last-child) .robot-kit-component-item {
-                 max-width: calc(50% - 15px); /* If only two items, make them 50% */
+                max-width: calc(50% - 15px); /* If only two items, make them 50% */
             }
         }
 
@@ -354,7 +375,7 @@
             }
             .component-image-area img:nth-child(3n+1):last-child:nth-child(odd),
             .component-image-area img:nth-child(3n+2):last-child:nth-child(even) {
-                 width: 100%; /* Make the last image full width if it's an odd one out, for better balance */
+                    width: 100%; /* Make the last image full width if it's an odd one out, for better balance */
             }
         }
 
@@ -479,6 +500,36 @@
             background-color: rgba(255, 255, 255, 0.25);
             transform: scale(1.1);
         }
+
+        /* NEW STYLES for dynamic year navigation */
+        .year-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 2.5rem;
+        }
+
+        .year-nav-link {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .year-nav-link:hover, .year-nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
     </style>
 </head>
 <body>
@@ -490,8 +541,7 @@
 
     <nav>
         <a href="#about">About Me</a>
-        <a href="#projects">Main Projects</a>
-        <a href="#sideprojects">Personal Projects</a>
+        <a href="#projects-section">Projects</a>
         <a href="#contact">Contact</a>
     </nav>
 
@@ -507,255 +557,234 @@
         </div>
     </section>
 
-    <section id="projects">
-        <h2>Main Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <div class="project-images-container">
-                    <!-- Images for Visual-Based Human-Robot Collaboration System -->
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true" alt="Collaborative Robot Human Pose Estimation">
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_Demo.jpg?raw=true" alt="Collaborative Robot System Demo">
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/OBA.jpg?raw=true" alt="Collaborative Robot Obstacle Avoidance">
-                </div>
-                <div class="project-content">
-                    <h3>Collaborative Robot System Development (Stereo Depth Camera Based)</h3>
-                    <p>
-                        Independently developed a collaborative robot system based on ROS2 / Moveit 2,
-                        implementing real-time obstacle avoidance and human-robot collaboration algorithms
-                        using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment
-                        setup, testing, and validation of the HRC system algorithms.
-                        Employed a stereo depth camera and human skeleton identification models to estimate
-                        3D human skeletons. Calculated the positional relationship between human skeletons
-                        and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time
-                        path and velocity replanning for safe human-robot collaboration.
-                    </p>
-                </div>
-            </div>
-            <div class="project">
-                <div class="project-images-container">
-                    <!-- Image for In-Door Autonomous Mobile Robot -->
-                    <img src="https://placehold.co/400x250/3a3a3a/CCCCCC?text=AMR+Dev" alt="Autonomous Mobile Robot Development">
-                    <img src="https://placehold.co/400x250/3a3a3a/999999?text=Edge+AI" alt="Edge AI Module Development">
-                </div>
-                <div class="project-content">
-                    <h3>Embedded & Mobile Robot Development (AMR)</h3>
-                    <p>
-                        Responsible for MCU firmware and electronic circuit design for optoelectronic product lines
-                        (e.g., laser rangefinders, camera modules). Developed edge AI modules based on SoC and
-                        FreeRTOS, integrating facial/human body tracking models. Managed firmware, circuit design,
-                        verification, and commercialization. Led the ROS2 mobile robot platform development,
-                        including high-level software framework setup, low-level controller firmware, and circuit
-                        design (motor control, sensor communication).
-                    </p>
-                </div>
-            </div>
-            <div class="project">
-                <div class="project-images-container">
-                    <!-- Updated Image for ROSBot Analysis -->
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/rosbot_up2.png?raw=true" alt="ROSBot Autonomous Mobile Robot Platform - Upgraded">
-                    <!-- Removed the XITO vs ROS2 image -->
-                </div>
-                <div class="project-content">
-                    <h3>ROSBot Autonomous Mobile Robot Development & Comparative Analysis</h3>
-                    <p>
-                        Developed ROSBot mobile robots based on both XITO framework and ROS2 platform,
-                        implementing high-level control, communication, and sensor integration.
-                        Conducted a systematic comparison of functionalities, performance, and scalability.
-                        Repaired and redesigned ROSBot mechanisms and control circuits to improve hardware
-                        stability and scalability. Developed dedicated Bash scripts for ROSBot to automate
-                        cruising demonstration tasks, enhancing efficiency and stability.
-                        Participated in evaluating the new automated control framework XITO, conducting
-                        technical tests and feasibility analysis, and providing decision-making recommendations.
-                    </p>
-                </div>
-            </div>
+    <section id="projects-section">
+        <h2>My Projects</h2>
+        <div class="year-nav" id="year-nav-container">
+            <!-- Year navigation links will be dynamically added here -->
         </div>
-    </section>
-
-    <section id="sideprojects">
-        <h2>Personal Projects</h2>
-        <div class="projects">
-            <div class="project project-horizontal-layout"> <!-- Added class for horizontal layout -->
-                <!-- Image for Self-Balancing Robot -->
-                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" alt="Self-Balancing Robot">
-                <div class="project-content">
-                    <h3>Self-Balancing Robot</h3>
-                    <p>
-                        Designed and developed a self-balancing robot prototype based on IMU sensors.
-                        Implemented PID control algorithms, motor drive firmware, and performed kinematics
-                        tuning to maintain stable robot posture in dynamic environments.
-                    </p>
-                </div>
-            </div>
-            <div class="project">
-                <div class="project-content">
-                    <h3>Robot Competition Kit Full-Stack Development</h3>
-                    <p>
-                        Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing.
-                    </p>
-
-                    <div class="robot-kit-components-container">
-                        <div class="robot-kit-component-item">
-                            <div class="component-image-area">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true" alt="Omniwheel for Robot Kit (Carbon Fiber, 6061 Aluminum)">
-                            </div>
-                            <div class="component-text-area">
-                                <h4>Omniwheels</h4>
-                                <p>Designed and integrated robust omniwheels featuring <strong>carbon fiber and 6061 aluminum construction</strong> for enhanced durability and multi-directional movement. Multiple wheels were used to increase the overall rigidity and hardness of the robot's drive system.</p>
-                            </div>
-                        </div>
-
-                        <div class="robot-kit-component-item">
-                            <div class="component-image-area">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true" alt="Custom 4-in-1 ToF Sensor Board">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/2to4Encoder.png?raw=true" alt="2-to-4 Encoder for ToF Sensor">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tofsensorbatch.jpg?raw=true" alt="ToF Sensor Batch">
-                            </div>
-                            <div class="component-text-area">
-                                <h4>Custom 4-in-1 ToF Sensor Board</h4>
-                                <p>Developed a specialized board for VL53L0X Time-of-Flight sensors, optimizing I2C address assignment and XSHUT pin control. This innovative solution enabled control of multiple sensors using only 2 pins via a logic gate, significantly reducing pin count requirements for the main controller.</p>
-                            </div>
-                        </div>
-
-                        <div class="robot-kit-component-item">
-                            <div class="component-image-area">
-                                 <!-- Placeholder images for Main Control Board & Light Sensors -->
-                                <img src="https://placehold.co/400x250/3a3a3a/DDDDDD?text=Main+Control+Board" alt="Robot Main Control Board">
-                                <img src="https://placehold.co/400x250/3a3a3a/BBBBBB?text=Light+Sensors" alt="Robot Light Sensors (LDRs)">
-                            </div>
-                            <div class="component-text-area">
-                                <h4>Main Control Board & Light Sensors</h4>
-                                <p>Designed and manufactured the primary control board for the robot, serving as the central processing unit. Integrated Light Dependent Resistors (LDRs) for ambient light detection, enabling environmental interaction and basic navigation functionalities.</p>
-                            </div>
-                        </div>
-                    </div> <!-- End robot-kit-components-container -->
-
-                    <p>
-                        <strong>Full Stack Robot Development & Manufacturing:</strong>strong>
-                        Developed low-level C/C++ control libraries for precise omniwheel motor control and sensor driver, including Tof sensor, light sensor , and IMU.
-                        Development of computer vision for object detection and variuos image processing applications. 
-                        3D modeling, and participated in structural component manufacturing (3D printing/CNC/laser cutting) and robot assembly. 
-                        Completed prototype development and testing, and drove small-batch production.
-                    </p>
-                </div>
-            </div>
-            <div class="project">
-                <div class="project-images-container">
-                    <!-- Placeholder images for Soccer Robot -->
-                    <img src="https://placehold.co/400x250/3a3a3a/AAAAAA?text=Soccer+Robot+Visuals" alt="Soccer Robot Visual System">
-                    <img src="https://placehold.co/400x250/3a3a3a/777777?text=Soccer+Robot+Control" alt="Soccer Robot Motion Control">
-                </div>
-                <div class="project-content">
-                    <h3>RoboCup Junior Soccer Robot</h3>
-                    <p>
-                        Participated in the development of a RoboCup Junior soccer robot, responsible for
-                        the visual system (ball detection and localization), motion control modules, and
-                        tactical decision-making logic for software and firmware integration, enabling the
-                        robot to autonomously seek the ball and shoot.
-                    </p>
-                </div>
-            </div>
-            <div class="project">
-                <div class="project-images-container">
-                    <img src="https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter+Device" alt="USB Power Meter Device">
-                    <img src="https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB" alt="USB Power Meter PCB">
-                </div>
-                <div class="project-content">
-                    <h3>USB Power Meter</h3>
-                    <p>
-                        Designed and developed a USB interface power meter prototype, responsible for
-                        circuit schematic, PCB layout, and firmware programming. Achieved precise
-                        acquisition and display of voltage, current, and power data, and included
-                        data logging and communication interfaces.
-                    </p>
-                </div>
-            </div>
-            <!-- NEW PROJECT CARD: Fire Extinguishing Robot -->
-            <div class="project">
-                <div class="project-images-container">
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/FER.png?raw=true" alt="Fire Extinguishing Robot">
-                </div>
-                <div class="project-content">
-                    <h3>Fire Extinguishing Robot</h3>
-                    <p>
-                        Developed an autonomous fire extinguishing robot designed to detect and suppress fires.
-                        Integrated sensors for flame detection and obstacle avoidance, with a custom control system
-                        to navigate and deploy extinguishing agents effectively.
-                    </p>
-                </div>
-            </div>
+        <div class="projects" id="project-list">
+            <!-- Project blocks will be dynamically added here by JavaScript -->
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <p>Feel free to reach out to me!</p>
         <div class="contact">
-            <a href="mailto:yujen_chen@protonmail.com">Email</a>
-            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
+            <a href="mailto:your.email@example.com">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="2em" height="2em">
+                    <path d="M2.003 5.967c0-.986.96-1.782 2.144-1.782h15.706c1.184 0 2.144.796 2.144 1.782L12.185 13.9a2.125 2.125 0 01-2.37 0L2.003 5.967zm-1.04 1.258a1.2 1.2 0 00-.776 2.4l1.83 1.373-1.83 1.373a1.2 1.2 0 101.523 1.954l1.83-1.373L12 18.23l7.98-5.985 1.83 1.373a1.2 1.2 0 001.523-1.954l-1.83-1.373 1.83-1.373a1.2 1.2 0 10-.776-2.4l-11.458 8.618-11.458-8.618z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/CJxrobot">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="2em" height="2em">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.04-1.612-4.04-1.612-.546-1.385-1.332-1.755-1.332-1.755-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.303 3.492.99.108-.77.419-1.303.762-1.603-2.665-.3-5.464-1.333-5.464-5.932 0-1.31.468-2.382 1.236-3.224-.124-.3-.535-1.524.117-3.18 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.29-1.553 3.298-1.23 3.298-1.23.652 1.656.241 2.881.118 3.18.77.842 1.235 1.914 1.235 3.224 0 4.61-2.802 5.626-5.475 5.922.42.36.802 1.085.802 2.185 0 1.58-.014 2.854-.014 3.242 0 .31.22.69.824.577C20.566 21.802 24 17.302 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/yu-jen-chen-robotics">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="2em" height="2em">
+                    <path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.933 0-1.688-.845-1.688-1.889s.755-1.889 1.688-1.889 1.688.845 1.688 1.889-.755 1.889-1.688 1.889zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.616s1.661-2.909 6-2.909c3.96 0 7 2.454 7 7.273V19z"/>
+                </svg>
+            </a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Yu Jen Chen. All rights reserved.</p>
+        <p>&copy; 2024 Yu Jen Chen. All rights reserved.</p>
     </footer>
 
-    <!-- Image Modal (Pop-up) -->
-    <div id="imageModal" class="modal-overlay">
+    <!-- Modal for showing images in full screen -->
+    <div class="modal-overlay" id="imageModal">
         <div class="modal-content">
-            <button id="closeModal" class="modal-close-button">&times;</button>
-            <img src="" alt="Enlarged Image" id="modalImage">
+            <span class="modal-close-button">&times;</span>
+            <img src="" alt="Full-screen image" id="modalImage">
         </div>
     </div>
 
     <script>
+        // Data for all projects
+        const projects = [
+            {
+                title: "Collaborative Robot System Development",
+                year: 2024,
+                status: "done",
+                isHighlighted: true,
+                description: "Independently developed a collaborative robot system based on ROS2 / Moveit 2, implementing real-time obstacle avoidance and human-robot collaboration algorithms using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment setup, testing, and validation of the HRC system algorithms. Employed a stereo depth camera and human skeleton identification models to estimate 3D human skeletons. Calculated the positional relationship between human skeletons and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time path and velocity replanning for safe human-robot collaboration.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_Demo.jpg?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/OBA.jpg?raw=true"
+                ]
+            },
+            {
+                title: "ROSBot Autonomous Mobile Robot Development & Comparative Analysis",
+                year: 2023,
+                status: "done",
+                description: "Developed ROSBot mobile robots based on both XITO framework and ROS2 platform, implementing high-level control, communication, and sensor integration. Conducted a systematic comparison of functionalities, performance, and scalability. Repaired and redesigned ROSBot mechanisms and control circuits to improve hardware stability and scalability. Developed dedicated Bash scripts for ROSBot to automate cruising demonstration tasks, enhancing efficiency and stability. Participated in evaluating the new automated control framework XITO, conducting technical tests and feasibility analysis, and providing decision-making recommendations.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/rosbot_up2.png?raw=true"
+                ]
+            },
+            {
+                title: "Self-Balancing Robot",
+                year: 2022,
+                status: "done",
+                description: "Designed and developed a self-balancing robot prototype based on IMU sensors. Implemented PID control algorithms, motor drive firmware, and performed kinematics tuning to maintain stable robot posture in dynamic environments.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"
+                ],
+                layout: "horizontal"
+            },
+            {
+                title: "Robot Competition Kit Full-Stack Development",
+                year: 2021,
+                status: "done",
+                description: "Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/2to4Encoder.png?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tofsensorbatch.jpg?raw=true"
+                ]
+            },
+            {
+                title: "Undergoing Project: Bileg-wheeled balancing robot",
+                year: 2025,
+                status: "undergoing",
+                isHighlighted: true,
+                description: "Designing a two-wheeled balancing robot with an articulated leg-like structure. The project involves complex dynamic modeling and control algorithm development to maintain balance and achieve stable locomotion. The system uses IMU and encoder feedback for precise posture and position control, and it's being developed on an embedded platform with real-time operating system (RTOS) for deterministic performance.",
+                images: [
+                    "https://placehold.co/400x250/4f46e5/ffffff?text=Bileg-wheeled+Robot+Design",
+                    "https://placehold.co/400x250/4f46e5/ffffff?text=Robot+Kinematics+Model"
+                ]
+            },
+            {
+                title: "Undergoing Project: USB Power Meter",
+                year: 2025,
+                status: "undergoing",
+                isHighlighted: true,
+                description: "Designed and developed a USB interface power meter prototype, responsible for circuit schematic, PCB layout, and firmware programming. Achieved precise acquisition and display of voltage, current, and power data, and included data logging and communication interfaces.",
+                images: [
+                    "https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter+Device",
+                    "https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB"
+                ]
+            }
+        ];
+
         document.addEventListener('DOMContentLoaded', () => {
-            const imageModal = document.getElementById('imageModal');
+            const projectListContainer = document.getElementById('project-list');
+            const yearNavContainer = document.getElementById('year-nav-container');
+            const modalOverlay = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
-            const closeModalButton = document.getElementById('closeModal');
+            const closeButton = document.querySelector('.modal-close-button');
 
-            // Select all images that should trigger the modal
-            const galleryImages = document.querySelectorAll(
-                '.project-images-container img, ' +
-                '.projects .project.project-horizontal-layout > img, ' +
-                '.component-image-area img'
-            );
+            const uniqueYears = [...new Set(projects.map(p => p.year))].sort((a, b) => b - a);
 
-            // Function to open the modal
-            const openModal = (src, alt) => {
-                modalImage.src = src;
-                modalImage.alt = alt;
-                imageModal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-            };
+            // Create "Highlight" button and year buttons
+            const highlightLink = document.createElement('span');
+            highlightLink.textContent = "Highlights";
+            highlightLink.classList.add('year-nav-link');
+            highlightLink.dataset.filter = 'highlight';
+            yearNavContainer.appendChild(highlightLink);
 
-            // Function to close the modal
-            const closeModal = () => {
-                imageModal.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
-            };
-
-            // Add click listeners to all gallery images
-            galleryImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    openModal(img.src, img.alt);
-                });
+            uniqueYears.forEach(year => {
+                const yearLink = document.createElement('span');
+                yearLink.textContent = year;
+                yearLink.classList.add('year-nav-link');
+                yearLink.dataset.filter = year;
+                yearNavContainer.appendChild(yearLink);
             });
 
-            // Close modal when close button is clicked
-            closeModalButton.addEventListener('click', closeModal);
+            // Function to render projects based on filter
+            const renderProjects = (filter) => {
+                projectListContainer.innerHTML = '';
+                let filteredProjects = projects;
 
-            // Close modal when clicking outside the image (on the overlay)
-            imageModal.addEventListener('click', (event) => {
-                if (event.target === imageModal) {
-                    closeModal();
+                if (filter === 'highlight') {
+                    filteredProjects = projects.filter(p => p.isHighlighted);
+                } else if (filter) {
+                    filteredProjects = projects.filter(p => p.year.toString() === filter);
+                }
+
+                filteredProjects.sort((a, b) => b.year - a.year).forEach(project => {
+                    const projectDiv = document.createElement('div');
+                    projectDiv.classList.add('project');
+                    if (project.layout === 'horizontal') {
+                        projectDiv.classList.add('project-horizontal-layout');
+                    }
+
+                    // Add status tag
+                    const statusTag = document.createElement('span');
+                    statusTag.classList.add('status-tag', project.status);
+                    statusTag.textContent = project.status;
+                    projectDiv.appendChild(statusTag);
+
+                    // Add images if they exist
+                    if (project.images && project.images.length > 0) {
+                        const imagesContainer = document.createElement('div');
+                        imagesContainer.classList.add('project-images-container');
+                        if (project.images.length === 2) {
+                            imagesContainer.classList.add('two-images');
+                        }
+
+                        project.images.forEach(imgSrc => {
+                            const img = document.createElement('img');
+                            img.src = imgSrc;
+                            img.alt = project.title;
+                            img.addEventListener('click', () => {
+                                modalImage.src = imgSrc;
+                                modalOverlay.classList.add('active');
+                            });
+                            imagesContainer.appendChild(img);
+                        });
+
+                        projectDiv.appendChild(imagesContainer);
+                    }
+
+                    // Add project content
+                    const projectContent = document.createElement('div');
+                    projectContent.classList.add('project-content');
+
+                    const title = document.createElement('h3');
+                    title.textContent = project.title;
+                    projectContent.appendChild(title);
+
+                    const description = document.createElement('p');
+                    description.textContent = project.description;
+                    projectContent.appendChild(description);
+
+                    projectDiv.appendChild(projectContent);
+                    projectListContainer.appendChild(projectDiv);
+                });
+            };
+
+            // Initial render (show all projects)
+            renderProjects();
+            // Set initial active state for first year or highlights if available
+            const initialFilterElement = document.querySelector('.year-nav-link');
+            if (initialFilterElement) {
+                initialFilterElement.classList.add('active');
+                renderProjects(initialFilterElement.dataset.filter);
+            }
+            
+            // Event delegation for navigation links
+            yearNavContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('year-nav-link')) {
+                    document.querySelectorAll('.year-nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    event.target.classList.add('active');
+                    renderProjects(event.target.dataset.filter);
                 }
             });
 
-            // Close modal with Escape key
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && imageModal.classList.contains('active')) {
-                    closeModal();
+            // Modal functionality
+            closeButton.addEventListener('click', () => {
+                modalOverlay.classList.remove('active');
+            });
+
+            modalOverlay.addEventListener('click', (event) => {
+                if (event.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
                 }
             });
         });
