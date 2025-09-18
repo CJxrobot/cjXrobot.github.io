@@ -3,427 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Yu Jen Chen - Portfolio</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external stylesheet -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Base styling for transparent dark theme */
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a; /* Base dark background for overall depth */
-            color: #e0e0e0; /* Light grey text for contrast */
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
         }
-
-        /* Header styling */
-        header {
-            background-color: rgba(0, 0, 0, 0.7); /* More transparent black */
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3.5rem;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        header p {
-            font-size: 1.3rem;
-            margin-top: 0.5rem;
-            font-weight: 300;
-            color: #bbb; /* Slightly lighter subtitle */
-        }
-
-        /* Navigation bar styling */
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.5); /* More transparent black */
-            padding: 1rem 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            flex-wrap: wrap;
-            border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle transparent border */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 18px;
-            padding: 8px 15px;
-            font-size: 1.15rem;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-            border-radius: 5px;
-        }
-
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.15); /* More visible light transparent highlight */
-            color: #f0f0f0; /* Slightly brighter white on hover */
-            transform: translateY(-2px);
-        }
-
-        /* Section general styling: Full width background, content constrained by inner max-width */
-        section {
-            padding: 3rem 3rem; /* Increased horizontal padding for content */
-            width: 100%; /* Makes the section background span full width */
-            box-sizing: border-box; /* Include padding in width calculation */
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #f0f0f0; /* No colorful text for section titles */
-            margin-bottom: 2.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.15); /* Subtle white for underline */
-            border-radius: 2px;
-        }
-
-        /* About Section - styling for text only */
-        .about {
-            display: flex;
-            flex-direction: column; /* Always vertical */
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            background-color: rgba(0, 0, 0, 0.4); /* Transparent black */
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #f0f0f0;
-            max-width: 960px; /* Constrain width of about content for readability within full section */
-            margin: 0 auto 2rem auto; /* Center it within the full-width section */
-        }
-
-        .about div {
-            text-align: center; /* Center text as there's no image */
-            width: 100%;
-        }
-        .about div p {
-            font-size: 1.1rem;
-            color: #ccc;
-            margin-bottom: 1rem;
-        }
-
-        /* Projects Section - Main Container for the grid of project cards */
-        .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* Center project cards within the section */
-            gap: 30px; /* Space between project cards */
-            margin-bottom: 2rem;
-            max-width: 100%; /* Allow project container to span full width of section padding */
-            margin: 0 auto; /* Center the projects container */
-        }
-
-        /* Individual Project Card (Default Vertical) */
-        .projects .project {
-            background-color: rgba(0, 0, 0, 0.4); /* Transparent black */
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-            flex-direction: column; /* Default: vertical stack for all content within the card */
-            align-items: center;
-            text-align: center;
-            width: 100%; /* Make each project card full width */
-            max-width: 960px; /* Limit max-width for readability on very large screens */
-            display: flex;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #f0f0f0;
-        }
-
-        .projects .project:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Multi-image container within a project card (Cobot, Soccer, USB Meter) */
-        .project-images-container {
-            display: flex;
-            flex-direction: column; /* Default: stack images vertically on mobile */
-            gap: 10px;
-            margin-bottom: 1.2rem; /* Consistent spacing below images */
-            width: 100%;
-            flex-shrink: 0;
-            justify-content: center; /* Center images horizontally when in a row */
-            align-items: center; /* Center images vertically when in a row */
-        }
-
-        .project-images-container img {
-            width: 100%; /* Default: images take full width of container on mobile */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            display: block; /* Ensure images behave as blocks */
-            margin: 0 auto; /* Center single images if container is wider */
-            cursor: pointer; /* Indicate clickable */
-            transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
-        }
-        /* Interactive scaling for images in project-images-container */
-        .project-images-container img:hover,
-        .project-images-container img:active {
-            transform: scale(1.15); /* Scales image up by 15% on hover/click */
-        }
-
-        /* Horizontal image layout for project-images-container on larger screens */
-        @media (min-width: 550px) { /* Applies to screens wider than typical mobile portrait */
-            .project-images-container {
-                flex-direction: row; /* Images display horizontally */
-                flex-wrap: wrap; /* Allow wrapping if too many images */
-            }
-            .project-images-container img {
-                width: calc(33.33% - 7px); /* Three images per row, accounting for gap */
-                min-width: 100px; /* Prevent images from becoming too small */
-                margin-bottom: 0; /* Reset bottom margin for horizontal flow */
-            }
-            /* Specific adjustments for 2 images in a container */
-            .project-images-container.two-images img {
-                width: calc(50% - 5px); /* Two images per row, accounting for gap */
-            }
-            /* For odd number of images, make the last one full width if it's the only one in its row */
-            .project-images-container img:nth-child(3n+1):last-child:nth-child(odd),
-            .project-images-container img:nth-child(3n+2):last-child:nth-child(even) {
-                 width: 100%; /* Make the last image full width if it's an odd one out */
-            }
-        }
-
-
-        /* Styles for Self-Balancing Robot (Segway) Project - Horizontal Layout */
-        .projects .project.project-horizontal-layout {
-            text-align: left; /* Align text left for this specific horizontal project */
-        }
-        @media (min-width: 768px) {
-            .projects .project.project-horizontal-layout {
-                flex-direction: row; /* Image | Text on larger screens */
-                align-items: flex-start; /* Align content to the top */
-            }
-            .projects .project.project-horizontal-layout > img {
-                flex-basis: 35%; /* Image takes 35% of the horizontal space */
-                max-width: 35%; /* Ensure it doesn't grow beyond this */
-                margin-right: 25px; /* Space between image and text */
-                margin-bottom: 0; /* Remove bottom margin when horizontal */
-                width: 100%; /* Ensure image fills its flex-basis */
-                display: block; /* Ensure it behaves as block for flex sizing */
-                margin-left: 0; /* Remove auto margins to align left */
-                margin-right: 25px; /* Specific right margin for horizontal spacing */
-                cursor: pointer; /* Indicate clickable */
-                transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
-            }
-            /* Interactive scaling for Segway image */
-            .projects .project.project-horizontal-layout > img:hover,
-            .projects .project.project-horizontal-layout > img:active {
-                transform: scale(1.15); /* Scales image up by 15% on hover/click */
-            }
-
-            .projects .project.project-horizontal-layout .project-content {
-                flex-basis: 65%; /* Text takes 65% of the horizontal space */
-                max-width: 65%;
-                text-align: left; /* Align text content left within this horizontal project */
-            }
-        }
-        /* Restore original single image sizing for Segway on mobile */
-        @media (max-width: 767px) {
-             .projects .project.project-horizontal-layout > img {
-                width: 50%; /* Revert to 50% for mobile stack */
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 1.2rem;
-                cursor: pointer; /* Indicate clickable */
-             }
-        }
-
-
-        .project-content { /* Wrapper for text content inside a project card */
-            width: 100%;
-            text-align: center; /* Default center align for other project cards on mobile */
-        }
-
-        .projects .project h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: #f0f0f0; /* No colorful text for project titles */
-        }
-
-        .projects .project p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #ccc;
-            margin-bottom: 0; /* Remove bottom margin if no buttons */
-            flex-grow: 1; /* Allows text to take up available space */
-        }
-
-        /* NEW STYLES FOR ROBOT KIT COMPONENTS LAYOUT */
-        .robot-kit-components-container {
-            display: flex;
-            flex-direction: column; /* Default: vertical stack on mobile */
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px; /* Gap between component items */
-            width: 100%; /* Takes full width of parent project card */
-            margin-top: 1.5rem; /* Space from the intro paragraph */
-            margin-bottom: 1.5rem; /* Space before the software paragraph */
-        }
-
-        @media (min-width: 768px) { /* On larger screens, arrange components horizontally */
-            .robot-kit-components-container {
-                flex-direction: row; /* Make component items go side-by-side */
-                align-items: flex-start; /* ALIGN ITEMS TO TOP HERE */
-            }
-        }
-
-        .robot-kit-component-item {
-            background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter background for each component item */
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column; /* Image(s) and text stack vertically within each component item */
-            align-items: center;
-            text-align: center;
-            width: 100%; /* Full width on mobile */
-            max-width: 300px; /* Constrain individual component item width for readability */
-        }
-
-        @media (min-width: 768px) {
-            .robot-kit-component-item {
-                flex: 1; /* Distribute space equally */
-                max-width: calc(33.33% - 20px); /* 3 columns with gap */
-                min-width: 250px; /* Ensure they don't get too small */
-            }
-            .robot-kit-components-container:has(.robot-kit-component-item:nth-child(2):last-child) .robot-kit-component-item {
-                 max-width: calc(50% - 15px); /* If only two items, make them 50% */
-            }
-        }
-
-        .component-image-area {
-            display: flex;
-            flex-direction: column; /* Images stack vertically within this area */
-            gap: 10px;
-            width: 100%;
-            margin-bottom: 1rem; /* Space between images and text */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .component-image-area img {
-            max-width: 100%; /* Ensure images fit within their column */
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            cursor: pointer; /* Indicate clickable */
-            transition: transform 0.2s ease-in-out; /* Added for interactive scaling */
-        }
-        /* Interactive scaling for images in component-image-area */
-        .component-image-area img:hover,
-        .component-image-area img:active {
-            transform: scale(1.15); /* Scales image up by 15% on hover/click */
-        }
-
-        /* Horizontal images within component-image-area on wider views */
-        @media (min-width: 480px) { /* Apply horizontal layout for component images on larger mobile/tablet */
-            .component-image-area {
-                flex-direction: row; /* Images display horizontally */
-                flex-wrap: wrap;
-            }
-            .component-image-area img {
-                width: calc(50% - 5px); /* Try 2 images per row for compactness */
-                min-width: 100px; /* Prevent images from becoming too small */
-            }
-            .component-image-area img:nth-child(3n+1):last-child:nth-child(odd),
-            .component-image-area img:nth-child(3n+2):last-child:nth-child(even) {
-                 width: 100%; /* Make the last image full width if it's an odd one out, for better balance */
-            }
-        }
-
-
-        .component-text-area {
-            width: 100%;
-            text-align: center;
-        }
-
-        .component-text-area h4 {
-            font-size: 1.2rem;
-            color: #f0f0f0;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-
-        .component-text-area p {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #ccc;
-            margin-bottom: 0;
-        }
-
-        /* Contact Section */
-        .contact {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 2rem;
-        }
-
-        .contact a {
-            color: #ccc; /* No colorful text for contact links */
-            text-decoration: none;
-            font-size: 2.2rem;
-            transition: color 0.3s ease, transform 0.2s ease;
-        }
-
-        .contact a:hover {
-            color: #f0f0f0; /* Brighter white on hover */
-            transform: translateY(-3px);
-        }
-
-        /* Footer styling */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #aaa;
-            font-size: 0.9rem;
-            margin-top: 3rem;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        /* --- Modal (Pop-up) Styles --- */
+        
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Very dark transparent background */
+            background-color: rgba(0, 0, 0, 0.85);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Ensure it's on top of everything */
+            z-index: 1000;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
-            backdrop-filter: blur(5px); /* Optional: blur background slightly */
+            backdrop-filter: blur(5px);
         }
 
         .modal-overlay.active {
@@ -432,7 +34,7 @@
         }
 
         .modal-content {
-            background-color: rgba(26, 26, 26, 0.9); /* Darker background for content */
+            background-color: rgba(26, 26, 26, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
@@ -444,15 +46,6 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            max-height: 80vh; /* Limit height to prevent overflow on smaller screens */
-            display: block;
-            border-radius: 8px;
-            object-fit: contain; /* Ensure image fits without cropping */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
         .modal-close-button {
@@ -480,286 +73,257 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-200">
 
-    <header>
-        <h1>Yu Jen Chen</h1>
-        <p>Robot Engineer | Embedded System Developer | Software & Hardware Integration Specialist</p>
+    <header class="bg-black/70 text-white text-center py-12 px-4 shadow-lg">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-wide drop-shadow-md">Yu Jen Chen</h1>
+        <p class="text-xl md:text-2xl mt-2 font-light text-gray-300">Robot Engineer | Embedded System Developer | Software & Hardware Integration Specialist</p>
     </header>
 
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#projects">Main Projects</a>
-        <a href="#sideprojects">Personal Projects</a>
-        <a href="#contact">Contact</a>
+    <nav class="sticky top-0 z-50 flex justify-center bg-black/50 py-4 px-2 shadow-md flex-wrap backdrop-blur-sm">
+        <a href="#about" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">About Me</a>
+        <a href="#projects-section" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">Projects</a>
+        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">Contact</a>
+        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">CV</a>
     </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about">
-            <div>
-                <p>
-                    Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development.
-                    Proven full-stack expertise across software, firmware, electronic circuit design, and mechanical engineering, delivering projects from prototyping to small-batch manufacturing.
+    <main class="container mx-auto px-4 py-8 md:py-16">
+        <section id="about" class="mb-16">
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-white mb-8 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gray-600 after:rounded">About Me</h2>
+            <div class="bg-black/40 p-6 md:p-10 rounded-xl shadow-lg border border-gray-700 max-w-4xl mx-auto">
+                <p class="text-center text-lg md:text-xl text-gray-300 leading-relaxed">
+                    Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development. Proven full-stack expertise across software, firmware, electronic circuit design, and mechanical engineering, delivering projects from prototyping to small-batch manufacturing.
                 </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects">
-        <h2>Main Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <div class="project-images-container">
-                    <!-- Images for Visual-Based Human-Robot Collaboration System -->
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true" alt="Collaborative Robot Human Pose Estimation">
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_Demo.jpg?raw=true" alt="Collaborative Robot System Demo">
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/OBA.jpg?raw=true" alt="Collaborative Robot Obstacle Avoidance">
-                </div>
-                <div class="project-content">
-                    <h3>Collaborative Robot System Development (Stereo Depth Camera Based)</h3>
-                    <p>
-                        Independently developed a collaborative robot system based on ROS2 / Moveit 2,
-                        implementing real-time obstacle avoidance and human-robot collaboration algorithms
-                        using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment
-                        setup, testing, and validation of the HRC system algorithms.
-                        Employed a stereo depth camera and human skeleton identification models to estimate
-                        3D human skeletons. Calculated the positional relationship between human skeletons
-                        and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time
-                        path and velocity replanning for safe human-robot collaboration.
-                    </p>
-                </div>
+        <section id="projects-section">
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-white mb-8 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gray-600 after:rounded">My Projects</h2>
+            <div class="flex justify-center flex-wrap gap-4 mb-8" id="year-nav-container">
+                <!-- Year navigation links will be dynamically added here -->
             </div>
-            <!-- Commented out: Embedded & Mobile Robot Development (AMR) -->
-            <!--
-            <div class="project">
-                <div class="project-images-container">
-                    <img src="https://placehold.co/400x250/3a3a3a/CCCCCC?text=AMR+Dev" alt="Autonomous Mobile Robot Development">
-                    <img src="https://placehold.co/400x250/3a3a3a/999999?text=Edge+AI" alt="Edge AI Module Development">
-                </div>
-                <div class="project-content">
-                    <h3>Embedded & Mobile Robot Development (AMR)</h3>
-                    <p>
-                        Responsible for MCU firmware and electronic circuit design for optoelectronic product lines
-                        (e.g., laser rangefinders, camera modules). Developed edge AI modules based on SoC and
-                        FreeRTOS, integrating facial/human body tracking models. Managed firmware, circuit design,
-                        verification, and commercialization. Led the ROS2 mobile robot platform development,
-                        including high-level software framework setup, low-level controller firmware, and circuit
-                        design (motor control, sensor communication).
-                    </p>
-                </div>
+            <div class="projects flex flex-col items-center gap-12" id="project-list">
+                <!-- Project blocks will be dynamically added here by JavaScript -->
             </div>
-            -->
-            <div class="project">
-                <div class="project-images-container">
-                    <!-- Updated Image for ROSBot Analysis -->
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/rosbot_up2.png?raw=true" alt="ROSBot Autonomous Mobile Robot Platform - Upgraded">
-                    <!-- Removed the XITO vs ROS2 image -->
-                </div>
-                <div class="project-content">
-                    <h3>ROSBot Autonomous Mobile Robot Development & Comparative Analysis</h3>
-                    <p>
-                        Developed ROSBot mobile robots based on both XITO framework and ROS2 platform,
-                        implementing high-level control, communication, and sensor integration.
-                        Conducted a systematic comparison of functionalities, performance, and scalability.
-                        Repaired and redesigned ROSBot mechanisms and control circuits to improve hardware
-                        stability and scalability. Developed dedicated Bash scripts for ROSBot to automate
-                        cruising demonstration tasks, enhancing efficiency and stability.
-                        Participated in evaluating the new automated control framework XITO, conducting
-                        technical tests and feasibility analysis, and providing decision-making recommendations.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="sideprojects">
-        <h2>Personal Projects</h2>
-        <div class="projects">
-            <div class="project project-horizontal-layout"> <!-- Added class for horizontal layout -->
-                <!-- Image for Self-Balancing Robot -->
-                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" alt="Self-Balancing Robot">
-                <div class="project-content">
-                    <h3>Self-Balancing Robot</h3>
-                    <p>
-                        Designed and developed a self-balancing robot prototype based on IMU sensors.
-                        Implemented PID control algorithms, motor drive firmware, and performed kinematics
-                        tuning to maintain stable robot posture in dynamic environments.
-                    </p>
-                </div>
+        <section id="contact" class="mt-16">
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-white mb-8 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gray-600 after:rounded">Contact</h2>
+            <div class="flex justify-center gap-8 md:gap-12 mt-8">
+                <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+                        <path d="M2.003 5.967c0-.986.96-1.782 2.144-1.782h15.706c1.184 0 2.144.796 2.144 1.782L12.185 13.9a2.125 2.125 0 01-2.37 0L2.003 5.967zm-1.04 1.258a1.2 1.2 0 00-.776 2.4l1.83 1.373-1.83 1.373a1.2 1.2 0 101.523 1.954l1.83-1.373L12 18.23l7.98-5.985 1.83 1.373a1.2 1.2 0 001.523-1.954l-1.83-1.373 1.83-1.373a1.2 1.2 0 10-.776-2.4l-11.458 8.618-11.458-8.618z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/CJxrobot" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+                        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.04-1.612-4.04-1.612-.546-1.385-1.332-1.755-1.332-1.755-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.303 3.492.99.108-.77.419-1.303.762-1.603-2.665-.3-5.464-1.333-5.464-5.932 0-1.31.468-2.382 1.236-3.224-.124-.3-.535-1.524.117-3.18 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.29-1.553 3.298-1.23 3.298-1.23.652 1.656.241 2.881.118 3.18.77.842 1.235 1.914 1.235 3.224 0 4.61-2.802 5.626-5.475 5.922.42.36.802 1.085.802 2.185 0 1.58-.014 2.854-.014 3.242 0 .31.22.69.824.577C20.566 21.802 24 17.302 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/yu-jen-chen-robotics" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+                        <path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.933 0-1.688-.845-1.688-1.889s.755-1.889 1.688-1.889 1.688.845 1.688 1.889-.755 1.889-1.688 1.889zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.616s1.661-2.909 6-2.909c3.96 0 7 2.454 7 7.273V19z"/>
+                    </svg>
+                </a>
             </div>
-            <div class="project">
-                <div class="project-content">
-                    <h3>Robot Competition Kit Full-Stack Development</h3>
-                    <p>
-                        Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing.
-                    </p>
+        </section>
+    </main>
 
-                    <div class="robot-kit-components-container">
-                        <div class="robot-kit-component-item">
-                            <div class="component-image-area">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true" alt="Omniwheel for Robot Kit (Carbon Fiber, 6061 Aluminum)">
-                            </div>
-                            <div class="component-text-area">
-                                <h4>Omniwheels</h4>
-                                <p>Designed and integrated robust omniwheels featuring **carbon fiber and 6061 aluminum construction** for enhanced durability and multi-directional movement. Multiple wheels were used to increase the overall rigidity and hardness of the robot's drive system.</p>
-                            </div>
-                        </div>
-
-                        <div class="robot-kit-component-item">
-                            <div class="component-image-area">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true" alt="Custom 4-in-1 ToF Sensor Board">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/2to4Encoder.png?raw=true" alt="2-to-4 Encoder for ToF Sensor">
-                                <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tofsensorbatch.jpg?raw=true" alt="ToF Sensor Batch">
-                            </div>
-                            <div class="component-text-area">
-                                <h4>Custom 4-in-1 ToF Sensor Board</h4>
-                                <p>Developed a specialized board for VL53L0X Time-of-Flight sensors, optimizing I2C address assignment and XSHUT pin control. This innovative solution enabled control of multiple sensors using only 2 pins via a logic gate, significantly reducing pin count requirements for the main controller.</p>
-                            </div>
-                        </div>
-
-                        <!-- Commented out: Main Control Board & Light Sensors -->
-                        <!--
-                        <div class="robot-kit-component-item">
-                            <div class="component-image-area">
-                                 <img src="https://placehold.co/400x250/3a3a3a/DDDDDD?text=Main+Control+Board" alt="Robot Main Control Board">
-                                 <img src="https://placehold.co/400x250/3a3a3a/BBBBBB?text=Light+Sensors" alt="Robot Light Sensors (LDRs)">
-                            </div>
-                            <div class="component-text-area">
-                                <h4>Main Control Board & Light Sensors</h4>
-                                <p>Designed and manufactured the primary control board for the robot, serving as the central processing unit. Integrated Light Dependent Resistors (LDRs) for ambient light detection, enabling environmental interaction and basic navigation functionalities.</p>
-                            </div>
-                        </div>
-                        -->
-                    </div> <!-- End robot-kit-components-container -->
-                </div>
-            </div>
-            <!-- Commented out: RoboCup Junior Soccer Robot -->
-            <!--
-            <div class="project">
-                <div class="project-images-container">
-                    <img src="https://placehold.co/400x250/3a3a3a/AAAAAA?text=Soccer+Robot+Visuals" alt="Soccer Robot Visual System">
-                    <img src="https://placehold.co/400x250/3a3a3a/777777?text=Soccer+Robot+Control" alt="Soccer Robot Motion Control">
-                </div>
-                <div class="project-content">
-                    <h3>RoboCup Junior Soccer Robot</h3>
-                    <p>
-                        Participated in the development of a RoboCup Junior soccer robot, responsible for
-                        the visual system (ball detection and localization), motion control modules, and
-                        tactical decision-making logic for software and firmware integration, enabling the
-                        robot to autonomously seek the ball and shoot.
-                    </p>
-                </div>
-            </div>
-            -->
-            <!-- Commented out: USB Power Meter -->
-            <!--
-            <div class="project">
-                <div class="project-images-container">
-                    <img src="https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter+Device" alt="USB Power Meter Device">
-                    <img src="https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB" alt="USB Power Meter PCB">
-                </div>
-                <div class="project-content">
-                    <h3>USB Power Meter</h3>
-                    <p>
-                        Designed and developed a USB interface power meter prototype, responsible for
-                        circuit schematic, PCB layout, and firmware programming. Achieved precise
-                        acquisition and display of voltage, current, and power data, and included
-                        data logging and communication interfaces.
-                    </p>
-                </div>
-            </div>
-            -->
-            <!-- NEW PROJECT CARD: Fire Extinguishing Robot -->
-            <div class="project">
-                <div class="project-images-container">
-                    <img src="https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/FER.png?raw=true" alt="Fire Extinguishing Robot">
-                </div>
-                <div class="project-content">
-                    <h3>Fire Extinguishing Robot</h3>
-                    <p>
-                        Developed an autonomous fire extinguishing robot designed to detect and suppress fires.
-                        Integrated sensors for flame detection and obstacle avoidance, with a custom control system
-                        to navigate and deploy extinguishing agents effectively.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me!</p>
-        <div class="contact">
-            <a href="mailto:yujen_chen@protonmail.com">Email</a>
-            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Yu Jen Chen. All rights reserved.</p>
+    <footer class="text-center py-8 bg-black/70 text-gray-400 text-sm mt-16 shadow-[0_-4px_8px_rgba(0,0,0,0.5)]">
+        <p>&copy; 2024 Yu Jen Chen. All rights reserved.</p>
     </footer>
 
-    <!-- Image Modal (Pop-up) -->
-    <div id="imageModal" class="modal-overlay">
+    <!-- Modal for showing images in full screen -->
+    <div class="modal-overlay" id="imageModal">
         <div class="modal-content">
-            <button id="closeModal" class="modal-close-button">&times;</button>
-            <img src="" alt="Enlarged Image" id="modalImage">
+            <span class="modal-close-button">&times;</span>
+            <img src="" alt="Full-screen image" id="modalImage">
         </div>
     </div>
 
     <script>
+        const projects = [
+            {
+                title: "Undergoing Project: Bileg-wheeled balancing robot",
+                year: 2025,
+                status: "undergoing",
+                isHighlighted: true,
+                description: "Designing a two-wheeled balancing robot with an articulated leg-like structure. The project involves complex dynamic modeling and control algorithm development to maintain balance and achieve stable locomotion. The system uses IMU and encoder feedback for precise posture and position control, and it's being developed on an embedded platform with real-time operating system (RTOS) for deterministic performance.",
+                images: [
+                    "https://placehold.co/400x250/4f46e5/ffffff?text=Bileg-wheeled+Robot+Design",
+                    "https://placehold.co/400x250/4f46e5/ffffff?text=Robot+Kinematics+Model"
+                ]
+            },
+            {
+                title: "USB Power Meter",
+                year: 2025,
+                status: "done",
+                isHighlighted: true,
+                description: "Designed and developed a USB interface power meter prototype, responsible for circuit schematic, PCB layout, and firmware programming. Achieved precise acquisition and display of voltage, current, and power data, and included data logging and communication interfaces.",
+                images: [
+                    "https://placehold.co/400x250/3a3a3a/D1D1D1?text=USB+Power+Meter+Device",
+                    "https://placehold.co/400x250/3a3a3a/C1C1C1?text=USB+Power+Meter+PCB"
+                ]
+            },
+            {
+                title: "Collaborative Robot System Development",
+                year: 2024,
+                status: "done",
+                isHighlighted: true,
+                description: "Independently developed a collaborative robot system based on ROS2 / Moveit 2, implementing real-time obstacle avoidance and human-robot collaboration algorithms using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment setup, testing, and validation of the HRC system algorithms. Employed a stereo depth camera and human skeleton identification models to estimate 3D human skeletons. Calculated the positional relationship between human skeletons and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time path and velocity replanning for safe human-robot collaboration.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_Demo.jpg?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/OBA.jpg?raw=true"
+                ]
+            },
+            {
+                title: "Robot Competition Kit Full-Stack Development",
+                year: 2023,
+                status: "done",
+                isHighlighted: true,
+                description: "Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing. This project was a key component of my bachelor's thesis.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/2to4Encoder.png?raw=true",
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tofsensorbatch.jpg?raw=true"
+                ]
+            },
+            {
+                title: "Bachelor's Thesis Project",
+                year: 2023,
+                status: "done",
+                isHighlighted: false,
+                description: "A research and development project focused on applying theoretical concepts in robotics and embedded systems. The thesis explored advanced control systems and sensor integration, culminating in a practical demonstration of an autonomous mobile robot.",
+                images: [
+                    "https://placehold.co/400x250/3a3a3a/D1D1D1?text=Thesis+Research+Diagram"
+                ]
+            },
+            {
+                title: "Self-Balancing Robot",
+                year: 2022,
+                status: "done",
+                isHighlighted: false,
+                description: "Designed and developed a self-balancing robot prototype based on IMU sensors. Implemented PID control algorithms, motor drive firmware, and performed kinematics tuning to maintain stable robot posture in dynamic environments.",
+                images: [
+                    "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"
+                ],
+                layout: "horizontal"
+            }
+        ];
+
         document.addEventListener('DOMContentLoaded', () => {
-            const imageModal = document.getElementById('imageModal');
+            const projectListContainer = document.getElementById('project-list');
+            const yearNavContainer = document.getElementById('year-nav-container');
+            const modalOverlay = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
-            const closeModalButton = document.getElementById('closeModal');
+            const closeButton = document.querySelector('.modal-close-button');
 
-            // Select all images that should trigger the modal
-            const galleryImages = document.querySelectorAll(
-                '.project-images-container img, ' +
-                '.projects .project.project-horizontal-layout > img, ' +
-                '.component-image-area img'
-            );
+            const uniqueYears = [...new Set(projects.map(p => p.year))].sort((a, b) => b - a);
 
-            // Function to open the modal
-            const openModal = (src, alt) => {
-                modalImage.src = src;
-                modalImage.alt = alt;
-                imageModal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-            };
+            // Create "Highlights" button and year buttons
+            const highlightLink = document.createElement('span');
+            highlightLink.textContent = "Highlights";
+            highlightLink.classList.add('year-nav-link', 'cursor-pointer', 'inline-block', 'rounded-full', 'px-4', 'py-2', 'font-medium', 'text-white', 'bg-gray-700', 'hover:bg-gray-700', 'hover:text-white', 'transition-colors', 'duration-200');
+            highlightLink.dataset.filter = 'highlight';
+            yearNavContainer.appendChild(highlightLink);
 
-            // Function to close the modal
-            const closeModal = () => {
-                imageModal.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
-            };
-
-            // Add click listeners to all gallery images
-            galleryImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    openModal(img.src, img.alt);
-                });
+            uniqueYears.forEach(year => {
+                const yearLink = document.createElement('span');
+                yearLink.textContent = year;
+                yearLink.classList.add('year-nav-link', 'cursor-pointer', 'inline-block', 'rounded-full', 'px-4', 'py-2', 'font-medium', 'text-gray-400', 'bg-gray-800', 'hover:bg-gray-700', 'hover:text-white', 'transition-colors', 'duration-200');
+                yearLink.dataset.filter = year;
+                yearNavContainer.appendChild(yearLink);
             });
 
-            // Close modal when close button is clicked
-            closeModalButton.addEventListener('click', closeModal);
+            // Function to render projects based on filter
+            const renderProjects = (filter) => {
+                projectListContainer.innerHTML = '';
+                let filteredProjects = projects;
 
-            // Close modal when clicking outside the image (on the overlay)
-            imageModal.addEventListener('click', (event) => {
-                if (event.target === imageModal) {
-                    closeModal();
+                if (filter === 'highlight') {
+                    filteredProjects = projects.filter(p => p.isHighlighted);
+                } else if (filter) {
+                    filteredProjects = projects.filter(p => p.year.toString() === filter);
+                }
+
+                filteredProjects.sort((a, b) => b.year - a.year).forEach(project => {
+                    const projectDiv = document.createElement('div');
+                    let projectClasses = 'bg-black/40 p-6 rounded-xl shadow-lg border border-gray-700 transition-transform duration-300 hover:scale-[1.02] relative max-w-5xl w-full';
+
+                    // Determine layout based on project data and screen size
+                    if (project.layout === 'horizontal') {
+                        projectClasses += ' flex flex-col md:flex-row items-center md:items-start text-center md:text-left';
+                    } else {
+                        projectClasses += ' flex flex-col items-center text-center';
+                    }
+                    projectDiv.className = projectClasses;
+
+                    // Status tag
+                    const statusTagClass = project.status === 'done' ? 'bg-green-600' : 'bg-yellow-600';
+                    const statusTag = `<span class="absolute top-4 right-4 text-xs font-bold uppercase py-1 px-3 rounded-full ${statusTagClass}">${project.status}</span>`;
+                    
+                    // Project images
+                    let imagesHtml = '';
+                    const imageContainerClass = project.images.length > 2 ? 'grid grid-cols-2 lg:grid-cols-3' : 'flex flex-wrap';
+
+                    imagesHtml = `
+                        <div class="project-images-container flex flex-wrap justify-center gap-4 mb-4 ${project.layout === 'horizontal' ? 'md:w-2/5' : ''}">
+                            ${project.images.map(imgSrc => `
+                                <img src="${imgSrc}" alt="${project.title} screenshot" class="rounded-lg shadow-md border border-gray-600 w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.33%-11px)] cursor-pointer hover:scale-105 transition-transform duration-200">
+                            `).join('')}
+                        </div>
+                    `;
+
+                    // Project content
+                    const contentHtml = `
+                        <div class="project-content flex-1 ${project.layout === 'horizontal' ? 'md:pl-8' : ''}">
+                            <h3 class="text-2xl font-bold text-white mb-2">${project.title}</h3>
+                            <p class="text-gray-300 leading-relaxed">${project.description}</p>
+                        </div>
+                    `;
+
+                    // Assemble the project card HTML
+                    projectDiv.innerHTML = statusTag + (project.layout === 'horizontal' ? imagesHtml + contentHtml : contentHtml + imagesHtml);
+
+                    projectListContainer.appendChild(projectDiv);
+                });
+            };
+
+            // Initial render: show highlighted projects
+            renderProjects('highlight');
+
+            // Handle filter clicks
+            yearNavContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('year-nav-link')) {
+                    const filter = e.target.dataset.filter;
+                    document.querySelectorAll('.year-nav-link').forEach(link => {
+                        link.classList.remove('bg-gray-700', 'text-white');
+                        link.classList.add('bg-gray-800', 'text-gray-400');
+                    });
+                    e.target.classList.remove('bg-gray-800', 'text-gray-400');
+                    e.target.classList.add('bg-gray-700', 'text-white');
+                    renderProjects(filter);
                 }
             });
 
-            // Close modal with Escape key
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && imageModal.classList.contains('active')) {
-                    closeModal();
+            // Modal functionality
+            projectListContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'IMG') {
+                    modalImage.src = e.target.src;
+                    modalOverlay.classList.add('active');
+                }
+            });
+            closeButton.addEventListener('click', () => {
+                modalOverlay.classList.remove('active');
+            });
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
                 }
             });
         });
     </script>
-
 </body>
 </html>
