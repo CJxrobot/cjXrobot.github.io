@@ -11,13 +11,28 @@
             font-family: 'Inter', sans-serif;
         }
         
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* Gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; /* Gray-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* Gray-500 */
+        }
+
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.95); /* Slightly darker background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,7 +40,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px); /* Increased blur */
         }
 
         .modal-overlay.active {
@@ -34,93 +49,111 @@
         }
 
         .modal-content {
-            background-color: rgba(26, 26, 26, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-            max-width: 90%;
-            max-height: 90%;
+            background-color: #111827; /* Darker background */
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(79, 70, 229, 0.3); /* Accent shadow */
+            max-width: 95%;
+            max-height: 95%;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #374151; /* Gray-700 border */
+        }
+
+        #modalImage {
+            max-width: 100%;
+            max-height: 80vh; /* Responsive height */
+            object-fit: contain;
+            border-radius: 8px;
         }
 
         .modal-close-button {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             color: #f0f0f0;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 1.2rem;
+            width: 36px;
+            height: 36px;
+            font-size: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: background-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1;
         }
 
         .modal-close-button:hover {
-            background-color: rgba(255, 255, 255, 0.25);
-            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.1) rotate(90deg);
         }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
 
-    <header class="bg-black/70 text-white text-center py-12 px-4 shadow-lg">
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-wide drop-shadow-md">Yu Jen Chen</h1>
-        <p class="text-xl md:text-2xl mt-2 font-light text-gray-300">Robot Engineer | Embedded System Developer | Software & Hardware Integration Specialist</p>
+    <header class="bg-indigo-800/80 text-white text-center py-16 px-4 shadow-xl border-b-4 border-indigo-500">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">Yu Jen Chen</h1>
+        <p class="text-xl md:text-2xl mt-3 font-light text-indigo-200">Robot Engineer | Embedded System Developer | Software & Hardware Integration Specialist</p>
     </header>
 
-    <nav class="sticky top-0 z-50 flex justify-center bg-black/50 py-4 px-2 shadow-md flex-wrap backdrop-blur-sm">
-        <a href="#about" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">About Me</a>
-        <a href="#projects-section" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">Projects</a>
-        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">Contact</a>
-        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-white/15 hover:text-white hover:scale-105">CV</a>
+    <nav class="sticky top-0 z-50 flex justify-center bg-gray-900/80 py-4 px-2 shadow-lg flex-wrap backdrop-blur-md border-b border-gray-700">
+        <a href="#about" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600 hover:text-white hover:scale-105">About Me</a>
+        <a href="#projects-section" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600 hover:text-white hover:scale-105">Projects</a>
+        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600 hover:text-white hover:scale-105">Contact</a>
+        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600 hover:text-white hover:scale-105">CV</a>
     </nav>
 
     <main class="container mx-auto px-4 py-8 md:py-16">
-        <section id="about" class="mb-16">
-            <h2 class="text-3xl md:text-4xl text-center font-bold text-white mb-8 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gray-600 after:rounded">About Me</h2>
-            <div class="bg-black/40 p-6 md:p-10 rounded-xl shadow-lg border border-gray-700 max-w-4xl mx-auto">
+        <section id="about" class="mb-20">
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-indigo-300 mb-10 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-indigo-600 after:rounded-full">About Me</h2>
+            <div class="bg-gray-800/60 p-6 md:p-12 rounded-xl shadow-2xl border border-gray-700 max-w-4xl mx-auto backdrop-blur-sm">
                 <p class="text-center text-lg md:text-xl text-gray-300 leading-relaxed">
-                    Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development. Proven full-stack expertise across software, firmware, electronic circuit design, and mechanical engineering, delivering projects from prototyping to small-batch manufacturing.
+                    Highly experienced **Robot Engineer** skilled in **ROS2-based system integration**, autonomous control, and **embedded development**. Proven full-stack expertise across software, firmware, **electronic circuit design (EE)**, and mechanical engineering, delivering projects from prototyping to small-batch manufacturing. My core competence lies in bridging the gap between digital control systems and physical hardware, ensuring robust and reliable robotic solutions.
                 </p>
             </div>
         </section>
 
         <section id="projects-section">
-            <h2 class="text-3xl md:text-4xl text-center font-bold text-white mb-8 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gray-600 after:rounded">My Projects</h2>
-            <div class="flex justify-center flex-wrap gap-4 mb-8" id="year-nav-container">
-                <!-- Year navigation links will be dynamically added here -->
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-indigo-300 mb-10 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-indigo-600 after:rounded-full">My Projects</h2>
+            
+            <!-- Filter Controls -->
+            <div class="bg-gray-800/60 p-6 rounded-xl mb-12 shadow-inner border border-gray-700">
+                <h3 class="text-lg font-semibold text-indigo-400 mb-4">Filter By:</h3>
+
+                <!-- Filter Navigation - Combined Years and Tags -->
+                <div class="space-y-4 md:space-y-0">
+                    <div class="flex flex-wrap gap-2 md:gap-4 items-center" id="filter-nav-container">
+                        <!-- Filters will be dynamically added here -->
+                    </div>
+                </div>
             </div>
+
             <div class="projects flex flex-col items-center gap-12" id="project-list">
                 <!-- Project blocks will be dynamically added here by JavaScript -->
             </div>
         </section>
 
-        <section id="contact" class="mt-16">
-            <h2 class="text-3xl md:text-4xl text-center font-bold text-white mb-8 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gray-600 after:rounded">Contact</h2>
-            <div class="flex justify-center gap-8 md:gap-12 mt-8">
-                <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+        <section id="contact" class="mt-20">
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-indigo-300 mb-10 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-indigo-600 after:rounded-full">Contact & Links</h2>
+            <div class="flex justify-center gap-8 md:gap-16 mt-8">
+                <a href="mailto:your.email@example.com" class="text-indigo-400 hover:text-white transition-transform duration-300 hover:scale-125 hover:drop-shadow-lg" aria-label="Email Yu Jen Chen">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
                         <path d="M2.003 5.967c0-.986.96-1.782 2.144-1.782h15.706c1.184 0 2.144.796 2.144 1.782L12.185 13.9a2.125 2.125 0 01-2.37 0L2.003 5.967zm-1.04 1.258a1.2 1.2 0 00-.776 2.4l1.83 1.373-1.83 1.373a1.2 1.2 0 101.523 1.954l1.83-1.373L12 18.23l7.98-5.985 1.83 1.373a1.2 1.2 0 001.523-1.954l-1.83-1.373 1.83-1.373a1.2 1.2 0 10-.776-2.4l-11.458 8.618-11.458-8.618z"/>
                     </svg>
                 </a>
-                <a href="https://github.com/CJxrobot" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                <a href="https://github.com/CJxrobot" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-white transition-transform duration-300 hover:scale-125 hover:drop-shadow-lg" aria-label="Yu Jen Chen's GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
                         <path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.04-1.612-4.04-1.612-.546-1.385-1.332-1.755-1.332-1.755-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.303 3.492.99.108-.77.419-1.303.762-1.603-2.665-.3-5.464-1.333-5.464-5.932 0-1.31.468-2.382 1.236-3.224-.124-.3-.535-1.524.117-3.18 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.29-1.553 3.298-1.23 3.298-1.23.652 1.656.241 2.881.118 3.18.77.842 1.235 1.914 1.235 3.224 0 4.61-2.802 5.626-5.475 5.922.42.36.802 1.085.802 2.185 0 1.58-.014 2.854-.014 3.242 0 .31.22.69.824.577C20.566 21.802 24 17.302 24 12c0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/yu-jen-chen-robotics" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                <a href="https://www.linkedin.com/in/yu-jen-chen-robotics" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-white transition-transform duration-300 hover:scale-125 hover:drop-shadow-lg" aria-label="Yu Jen Chen's LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
                         <path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.933 0-1.688-.845-1.688-1.889s.755-1.889 1.688-1.889 1.688.845 1.688 1.889-.755 1.889-1.688 1.889zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.616s1.661-2.909 6-2.909c3.96 0 7 2.454 7 7.273V19z"/>
                     </svg>
@@ -129,15 +162,15 @@
         </section>
     </main>
 
-    <footer class="text-center py-8 bg-black/70 text-gray-400 text-sm mt-16 shadow-[0_-4px_8px_rgba(0,0,0,0.5)]">
-        <p>&copy; 2024 Yu Jen Chen. All rights reserved.</p>
+    <footer class="text-center py-8 bg-gray-900/90 text-gray-500 text-sm mt-16 shadow-[0_-4px_8px_rgba(0,0,0,0.5)] border-t border-gray-800">
+        <p>&copy; 2024 Yu Jen Chen. Built for Canvas Environment.</p>
     </footer>
 
     <!-- Modal for showing images in full screen -->
     <div class="modal-overlay" id="imageModal">
         <div class="modal-content">
             <span class="modal-close-button">&times;</span>
-            <img src="" alt="Full-screen image" id="modalImage">
+            <img src="" alt="Full-screen project visual" id="modalImage" class="rounded-lg">
         </div>
     </div>
 
@@ -148,6 +181,7 @@
                 year: 2025,
                 status: "undergoing",
                 isHighlighted: true,
+                tags: ["Robotics Software", "Control Systems", "Embedded", "ROS2/RTOS"],
                 description: "Designing a two-wheeled balancing robot with an articulated leg-like structure. The project involves complex dynamic modeling and control algorithm development to maintain balance and achieve stable locomotion. The system uses IMU and encoder feedback for precise posture and position control, and it's being developed on an embedded platform with real-time operating system (RTOS) for deterministic performance.",
                 images: [
                     "https://placehold.co/400x250/4f46e5/ffffff?text=Bileg-wheeled+Robot+Design",
@@ -159,6 +193,7 @@
                 year: 2025,
                 status: "done",
                 isHighlighted: true,
+                tags: ["EE/Hardware", "Embedded", "PCB Design", "Measurements"],
                 description: "Designed and developed a USB interface power meter prototype, responsible for circuit schematic, PCB layout, and firmware programming. Achieved precise acquisition and display of voltage, current, and power data, and included data logging and communication interfaces.",
                 images: [
                     "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/USBPM(1).jpg?raw=true",
@@ -170,7 +205,8 @@
                 year: 2024,
                 status: "done",
                 isHighlighted: true,
-                description: "Independently developed a collaborative robot system based on ROS2 / Moveit 2, implementing real-time obstacle avoidance and human-robot collaboration algorithms using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment setup, testing, and validation of the HRC system algorithms. Employed a stereo depth camera and human skeleton identification models to estimate 3D human skeletons. Calculated the positional relationship between human skeletons and the robot arm, controlling the robot arm via ROS2 Moveit 2 to enable real-time path and velocity replanning for safe human-robot collaboration.",
+                tags: ["Robotics Software", "ROS2/AI", "Computer Vision", "Control Systems"],
+                description: "Independently developed a collaborative robot system based on ROS2 / Moveit 2, implementing real-time obstacle avoidance and human-robot collaboration (HRC) algorithms using a stereo depth camera and robot arm. Utilized Gazebo for simulation environment setup, testing, and validation. Employed a stereo depth camera and human skeleton identification models to estimate 3D human skeletons. Calculated the positional relationship between human skeletons and the robot arm, controlling the robot arm via ROS2 Moveit 2 for safe HRC.",
                 images: [
                     "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true",
                     "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_Demo.jpg?raw=true",
@@ -182,7 +218,8 @@
                 year: 2023,
                 status: "done",
                 isHighlighted: true,
-                description: "Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing. This project was a key component of my bachelor's thesis.",
+                tags: ["EE/Hardware", "Embedded", "Small-Batch Mfg", "Control Systems"],
+                description: "Led the full-stack software and hardware development of robot competition kits, covering the entire product lifecycle from concept to small-batch manufacturing. This included circuit design (EE), firmware development, and mechanical integration. This project was a key component of my bachelor's thesis.",
                 images: [
                     "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true",
                     "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true",
@@ -195,6 +232,7 @@
                 year: 2023,
                 status: "done",
                 isHighlighted: false,
+                tags: ["Research", "Robotics", "Control Systems"],
                 description: "A research and development project focused on applying theoretical concepts in robotics and embedded systems. The thesis explored advanced control systems and sensor integration, culminating in a practical demonstration of an autonomous mobile robot.",
                 images: [
                     "https://placehold.co/400x250/3a3a3a/D1D1D1?text=Thesis+Research+Diagram"
@@ -205,6 +243,7 @@
                 year: 2022,
                 status: "done",
                 isHighlighted: false,
+                tags: ["Control Systems", "Embedded", "EE/Hardware"],
                 description: "Designed and developed a self-balancing robot prototype based on IMU sensors. Implemented PID control algorithms, motor drive firmware, and performed kinematics tuning to maintain stable robot posture in dynamic environments.",
                 images: [
                     "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"
@@ -215,72 +254,102 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const projectListContainer = document.getElementById('project-list');
-            const yearNavContainer = document.getElementById('year-nav-container');
+            const filterNavContainer = document.getElementById('filter-nav-container');
             const modalOverlay = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             const closeButton = document.querySelector('.modal-close-button');
 
             const uniqueYears = [...new Set(projects.map(p => p.year))].sort((a, b) => b - a);
+            const allTags = [...new Set(projects.flatMap(p => p.tags))];
+            
+            // --- 1. Dynamic Filter Generation ---
+            
+            const filters = [
+                { type: 'highlight', value: 'highlight', label: 'Highlights', defaultActive: true },
+                ...uniqueYears.map(year => ({ type: 'year', value: year.toString(), label: year.toString() })),
+                ...allTags.map(tag => ({ type: 'tag', value: tag, label: tag }))
+            ];
 
-            // Create "Highlights" button and year buttons
-            const highlightLink = document.createElement('span');
-            highlightLink.textContent = "Highlights";
-            highlightLink.classList.add('year-nav-link', 'cursor-pointer', 'inline-block', 'rounded-full', 'px-4', 'py-2', 'font-medium', 'text-white', 'bg-gray-700', 'hover:bg-gray-700', 'hover:text-white', 'transition-colors', 'duration-200');
-            highlightLink.dataset.filter = 'highlight';
-            yearNavContainer.appendChild(highlightLink);
+            filters.forEach(filter => {
+                const link = document.createElement('span');
+                link.textContent = filter.label;
+                link.classList.add(
+                    'filter-link', 
+                    'cursor-pointer', 
+                    'inline-block', 
+                    'rounded-full', 
+                    'px-4', 
+                    'py-2', 
+                    'text-sm', 
+                    'font-medium', 
+                    'transition-colors', 
+                    'duration-200', 
+                    'shadow-md',
+                    'whitespace-nowrap'
+                );
+                link.dataset.filterType = filter.type;
+                link.dataset.filterValue = filter.value;
 
-            uniqueYears.forEach(year => {
-                const yearLink = document.createElement('span');
-                yearLink.textContent = year;
-                yearLink.classList.add('year-nav-link', 'cursor-pointer', 'inline-block', 'rounded-full', 'px-4', 'py-2', 'font-medium', 'text-gray-400', 'bg-gray-800', 'hover:bg-gray-700', 'hover:text-white', 'transition-colors', 'duration-200');
-                yearLink.dataset.filter = year;
-                yearNavContainer.appendChild(yearLink);
+                if (filter.defaultActive) {
+                    link.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700', 'scale-105');
+                } else {
+                    link.classList.add('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
+                }
+                
+                filterNavContainer.appendChild(link);
             });
 
-            // Function to render projects based on filter
-            const renderProjects = (filter) => {
+            // --- 2. Project Rendering Function ---
+
+            const renderProjects = (filterType, filterValue) => {
                 projectListContainer.innerHTML = '';
                 let filteredProjects = projects;
 
-                if (filter === 'highlight') {
+                if (filterType === 'highlight') {
                     filteredProjects = projects.filter(p => p.isHighlighted);
-                } else if (filter) {
-                    filteredProjects = projects.filter(p => p.year.toString() === filter);
+                } else if (filterType === 'year') {
+                    filteredProjects = projects.filter(p => p.year.toString() === filterValue);
+                } else if (filterType === 'tag') {
+                    filteredProjects = projects.filter(p => p.tags && p.tags.includes(filterValue));
                 }
 
                 filteredProjects.sort((a, b) => b.year - a.year).forEach(project => {
                     const projectDiv = document.createElement('div');
-                    let projectClasses = 'bg-black/40 p-6 rounded-xl shadow-lg border border-gray-700 transition-transform duration-300 hover:scale-[1.02] relative max-w-5xl w-full';
+                    let projectClasses = 'bg-gray-800/80 p-6 rounded-xl shadow-2xl border border-gray-700 transition-transform duration-300 hover:scale-[1.01] relative max-w-6xl w-full';
 
-                    // Determine layout based on project data and screen size
-                    if (project.layout === 'horizontal') {
-                        projectClasses += ' flex flex-col md:flex-row items-center md:items-start text-center md:text-left';
-                    } else {
-                        projectClasses += ' flex flex-col items-center text-center';
-                    }
-                    projectDiv.className = projectClasses;
+                    // Responsive Layout
+                    const layoutClass = project.layout === 'horizontal' ? 
+                        'flex flex-col md:flex-row items-center md:items-start text-center md:text-left md:space-x-6' : 
+                        'flex flex-col items-center text-center';
+
+                    projectDiv.className = `${projectClasses} ${layoutClass}`;
 
                     // Status tag
-                    const statusTagClass = project.status === 'done' ? 'bg-green-600' : 'bg-yellow-600';
-                    const statusTag = `<span class="absolute top-4 right-4 text-xs font-bold uppercase py-1 px-3 rounded-full ${statusTagClass}">${project.status}</span>`;
+                    const statusClass = project.status === 'done' ? 'bg-green-600 text-white' : 'bg-yellow-600 text-gray-900';
+                    const statusTag = `<span class="absolute top-4 right-4 text-xs font-bold uppercase py-1 px-3 rounded-full ${statusClass} shadow-lg z-10">${project.status}</span>`;
                     
-                    // Project images
-                    let imagesHtml = '';
-                    const imageContainerClass = project.images.length > 2 ? 'grid grid-cols-2 lg:grid-cols-3' : 'flex flex-wrap';
+                    // Tags list
+                    const tagsHtml = project.tags.map(tag => 
+                        `<span class="inline-block bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full border border-indigo-700/50">${tag}</span>`
+                    ).join(' ');
 
-                    imagesHtml = `
-                        <div class="project-images-container flex flex-wrap justify-center gap-4 mb-4 ${project.layout === 'horizontal' ? 'md:w-2/5' : ''}">
+                    // Project images container
+                    const imagesHtml = `
+                        <div class="project-images-container flex flex-wrap justify-center gap-3 mb-6 ${project.layout === 'horizontal' ? 'md:w-2/5 md:mb-0' : 'w-full'}">
                             ${project.images.map(imgSrc => `
-                                <img src="${imgSrc}" alt="${project.title} screenshot" class="rounded-lg shadow-md border border-gray-600 w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.33%-11px)] cursor-pointer hover:scale-105 transition-transform duration-200">
+                                <img src="${imgSrc}" alt="${project.title} visual" class="rounded-lg shadow-xl border-2 border-gray-700 w-full sm:w-[calc(50%-6px)] lg:w-[calc(33.33%-8px)] cursor-pointer hover:opacity-80 transition-opacity duration-200 object-cover aspect-video">
                             `).join('')}
                         </div>
                     `;
 
                     // Project content
                     const contentHtml = `
-                        <div class="project-content flex-1 ${project.layout === 'horizontal' ? 'md:pl-8' : ''}">
-                            <h3 class="text-2xl font-bold text-white mb-2">${project.title}</h3>
-                            <p class="text-gray-300 leading-relaxed">${project.description}</p>
+                        <div class="project-content flex-1 ${project.layout === 'horizontal' ? 'md:pr-4' : 'w-full'} space-y-4">
+                            <h3 class="text-3xl font-extrabold text-white">${project.title}</h3>
+                            <div class="flex flex-wrap gap-2 justify-center ${project.layout === 'horizontal' ? 'md:justify-start' : 'md:justify-center'}">
+                                ${tagsHtml}
+                            </div>
+                            <p class="text-gray-300 leading-relaxed text-base">${project.description}</p>
                         </div>
                     `;
 
@@ -291,36 +360,52 @@
                 });
             };
 
-            // Initial render: show highlighted projects
-            renderProjects('highlight');
+            // --- 3. Filter Click Handler ---
+            const filterProjects = (e) => {
+                if (e.target.classList.contains('filter-link')) {
+                    const newFilterType = e.target.dataset.filterType;
+                    const newFilterValue = e.target.dataset.filterValue;
 
-            // Handle filter clicks
-            yearNavContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('year-nav-link')) {
-                    const filter = e.target.dataset.filter;
-                    document.querySelectorAll('.year-nav-link').forEach(link => {
-                        link.classList.remove('bg-gray-700', 'text-white');
-                        link.classList.add('bg-gray-800', 'text-gray-400');
+                    // Update active state for buttons
+                    document.querySelectorAll('.filter-link').forEach(link => {
+                        link.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700', 'scale-105');
+                        link.classList.add('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
                     });
-                    e.target.classList.remove('bg-gray-800', 'text-gray-400');
-                    e.target.classList.add('bg-gray-700', 'text-white');
-                    renderProjects(filter);
+                    e.target.classList.remove('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
+                    e.target.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700', 'scale-105');
+                    
+                    // Render new filtered list
+                    renderProjects(newFilterType, newFilterValue);
                 }
-            });
+            };
 
-            // Modal functionality
+            filterNavContainer.addEventListener('click', filterProjects);
+
+            // Initial render: show highlighted projects
+            renderProjects('highlight', 'highlight');
+
+            // --- 4. Modal Functionality ---
             projectListContainer.addEventListener('click', (e) => {
-                if (e.target.tagName === 'IMG') {
+                if (e.target.tagName === 'IMG' && !e.target.closest('.project-images-container').classList.contains('hidden')) {
                     modalImage.src = e.target.src;
                     modalOverlay.classList.add('active');
                 }
             });
-            closeButton.addEventListener('click', () => {
+            
+            const closeModal = () => {
                 modalOverlay.classList.remove('active');
-            });
+            };
+
+            closeButton.addEventListener('click', closeModal);
             modalOverlay.addEventListener('click', (e) => {
                 if (e.target === modalOverlay) {
-                    modalOverlay.classList.remove('active');
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
                 }
             });
         });
