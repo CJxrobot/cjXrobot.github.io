@@ -3,140 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yu Jen Chen - Portfolio</title>
+    <title>Yu Jen Chen | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1f2937; }
-        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             display: flex; justify-content: center; align-items: center;
             z-index: 1000; opacity: 0; visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            backdrop-filter: blur(8px);
+            transition: opacity 0.3s ease;
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: #111827; padding: 24px; border-radius: 12px;
-            box-shadow: 0 0 50px rgba(79, 70, 229, 0.3);
-            max-width: 95%; max-height: 95%; position: relative;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; border: 1px solid #374151;
-        }
-        #modalImage { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; }
-        .modal-close-button {
-            position: absolute; top: 10px; right: 10px;
-            background: rgba(255, 255, 255, 0.2); color: #f0f0f0;
-            border: none; border-radius: 50%; width: 36px; height: 36px;
-            font-size: 1.5rem; display: flex; justify-content: center; align-items: center;
-            cursor: pointer; transition: background-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); line-height: 1;
-        }
-        .modal-close-button:hover { background-color: rgba(255, 255, 255, 0.35); transform: scale(1.1) rotate(90deg); }
+        .modal-content { max-width: 90%; max-height: 90%; }
+        #modalImage { max-width: 100%; max-height: 85vh; object-fit: contain; }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200">
+<body class="bg-zinc-50 text-zinc-900 antialiased">
 
-    <header class="bg-indigo-800/80 text-white text-center py-16 px-4 shadow-xl border-b-4 border-indigo-500">
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">Yu Jen Chen</h1>
-        <p class="text-xl md:text-2xl mt-3 font-light text-indigo-200">Full-Stack Robotics Engineer</p>
-    </header>
-
-    <nav class="sticky top-0 z-50 flex justify-center bg-gray-900/80 py-4 px-2 shadow-lg flex-wrap backdrop-blur-md border-b border-gray-700">
-        <a href="#about" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600">About Me</a>
-        <a href="#projects-section" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600">Projects</a>
-        <a href="#contact" class="text-white text-lg font-medium mx-3 py-2 px-4 rounded-full transition-all duration-300 hover:bg-indigo-600">Contact</a>
+    <nav class="fixed top-0 w-full z-40 bg-zinc-50/80 backdrop-blur-md">
+        <div class="container mx-auto px-8 py-8 flex justify-between items-center">
+            <span class="text-xs tracking-[0.2em] uppercase font-medium">Yu Jen Chen</span>
+            <div class="flex gap-8 text-[10px] uppercase tracking-[0.3em] text-zinc-400">
+                <a href="#profile" class="hover:text-zinc-900 transition">Profile</a>
+                <a href="#work" class="hover:text-zinc-900 transition">Work</a>
+                <a href="#contact" class="hover:text-zinc-900 transition">Contact</a>
+            </div>
+        </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-8 md:py-16">
-        <section id="about" class="mb-20">
-            <h2 class="text-3xl md:text-4xl text-center font-bold text-indigo-300 mb-10 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-indigo-600 after:rounded-full">About Me</h2>
-            <div class="bg-gray-800/60 p-6 md:p-12 rounded-xl shadow-2xl border border-gray-700 max-w-4xl mx-auto backdrop-blur-sm">
-                <p class="text-center text-lg md:text-xl text-gray-300 leading-relaxed">
-                    Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development. Proven full-stack expertise across software, firmware, electronic circuit design (EE), and mechanical engineering.
+    <header class="pt-48 pb-32 px-8 text-center">
+        <h1 class="text-3xl md:text-4xl font-light text-zinc-900 tracking-tight max-w-2xl mx-auto leading-relaxed">
+            Full-Stack Robotics Engineer focused on blending advanced system integration with elegant, functional design.
+        </h1>
+    </header>
+
+    <main class="container mx-auto px-8 pb-32">
+        
+        <section id="profile" class="mb-32">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-8 text-center">Profile</h2>
+            <div class="max-w-lg mx-auto text-center">
+                <p class="text-zinc-500 font-light leading-relaxed text-sm">
+                    Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development. 
+                    Proven full-stack expertise across software, firmware, electronic circuit design, and mechanical engineering.
                 </p>
             </div>
         </section>
 
-        <section id="projects-section">
-            <h2 class="text-3xl md:text-4xl text-center font-bold text-indigo-300 mb-10 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-indigo-600 after:rounded-full">My Projects</h2>
-            <div class="projects flex flex-col items-center gap-12" id="project-list">
+        <section id="work">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-20 text-center">Selected Work</h2>
+            <div class="max-w-5xl mx-auto space-y-40" id="project-list">
+                <!-- Projects will be injected here -->
             </div>
         </section>
 
-        <section id="contact" class="mt-20">
-            <h2 class="text-3xl md:text-4xl text-center font-bold text-indigo-300 mb-10 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-indigo-600 after:rounded-full">Contact & Links</h2>
-            <div class="flex justify-center gap-8 md:gap-16 mt-8">
-                <a href="mailto:your.email@example.com" class="text-indigo-400 hover:text-white transition-transform duration-300 hover:scale-125"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path d="M2.003 5.967c0-.986.96-1.782 2.144-1.782h15.706c1.184 0 2.144.796 2.144 1.782L12.185 13.9a2.125 2.125 0 01-2.37 0L2.003 5.967zm-1.04 1.258a1.2 1.2 0 00-.776 2.4l1.83 1.373-1.83 1.373a1.2 1.2 0 101.523 1.954l1.83-1.373L12 18.23l7.98-5.985 1.83 1.373a1.2 1.2 0 001.523-1.954l-1.83-1.373 1.83-1.373a1.2 1.2 0 10-.776-2.4l-11.458 8.618-11.458-8.618z"/></svg></a>
-                <a href="https://github.com/CJxrobot" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-white transition-transform duration-300 hover:scale-125"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.04-1.612-4.04-1.612-.546-1.385-1.332-1.755-1.332-1.755-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.303 3.492.99.108-.77.419-1.303.762-1.603-2.665-.3-5.464-1.333-5.464-5.932 0-1.31.468-2.382 1.236-3.224-.124-.3-.535-1.524.117-3.18 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.29-1.553 3.298-1.23 3.298-1.23.652 1.656.241 2.881.118 3.18.77.842 1.235 1.914 1.235 3.224 0 4.61-2.802 5.626-5.475 5.922.42.36.802 1.085.802 2.185 0 1.58-.014 2.854-.014 3.242 0 .31.22.69.824.577C20.566 21.802 24 17.302 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        <section id="contact" class="mt-32 pt-24 border-t border-zinc-200 text-center">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-8">Get In Touch</h2>
+            <div class="flex justify-center gap-12 text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+                <a href="mailto:your.email@example.com" class="hover:text-zinc-900 transition underline underline-offset-8">Email</a>
+                <a href="https://github.com/CJxrobot" target="_blank" class="hover:text-zinc-900 transition underline underline-offset-8">GitHub</a>
             </div>
         </section>
     </main>
 
-    <footer class="text-center py-8 bg-gray-900/90 text-gray-500 text-sm mt-16 shadow-[0_-4px_8px_rgba(0,0,0,0.5)] border-t border-gray-800">
-        <p>&copy; 2024 Yu Jen Chen. Built for Canvas Environment.</p>
-    </footer>
-
     <div class="modal-overlay" id="imageModal">
-        <div class="modal-content">
-            <span class="modal-close-button">&times;</span>
-            <img src="" alt="Full-screen project visual" id="modalImage" class="rounded-lg">
+        <div class="modal-content relative">
+            <button onclick="document.getElementById('imageModal').classList.remove('active')" class="absolute -top-12 right-0 text-zinc-400 hover:text-zinc-900 text-xs uppercase tracking-[0.2em]">Close</button>
+            <img src="" alt="Full-screen image" id="modalImage">
         </div>
     </div>
 
     <script>
         const projects = [
-            { title: "Bileg-wheeled robot", status: "New", tags: ["Robotics", "Control", "RTOS"], description: "Developing a two-wheeled balancing robot with an articulated leg-like structure, involving complex dynamic modeling and control algorithm development.", images: ["https://placehold.co/400x250/4f46e5/ffffff?text=Bileg-wheeled+Robot"] },
-            { title: "VLA AMR System", status: "New", tags: ["AI", "Vision-Language-Action", "Robotics"], description: "Developing a Vision-Language-Action (VLA) model for complex robotic manipulation, enabling natural language instructions to map to robotic actions.", images: ["https://placehold.co/400x250/4f46e5/ffffff?text=VLA+AMR+System"] },
-            { title: "Collaborateive robot system", status: "Done", tags: ["ROS2", "Moveit 2", "Vision"], description: "Developed a collaborative robot system using ROS2/Moveit 2 with real-time obstacle avoidance and human-robot collaboration algorithms.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true"] },
-            { title: "Sound-based laser control board", status: "Done", tags: ["Electronics", "Firmware", "Signal Processing"], description: "Designed and implemented a control board that processes audio signals to control laser outputs for interactive applications.", images: ["https://placehold.co/400x250/111827/ffffff?text=Sound-based+Laser"] },
-            { title: "USB Power Meter", status: "Done", tags: ["EE", "Embedded", "PCB"], description: "Designed and developed a USB power meter prototype including circuit schematic, PCB layout, and firmware for precise data acquisition.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/USBPM(1).jpg?raw=true"] },
-            { title: "Omni wheel", status: "Done", tags: ["Hardware", "Robotics", "Design"], description: "Full-stack development of omni-wheel robot components, covering mechanical design to hardware assembly.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true"] },
-            { title: "4 in 1 ToF Sensor", status: "Done", tags: ["Sensor", "Embedded", "Design"], description: "Designed a compact 4-in-1 Time-of-Flight sensor board for integrated environmental sensing.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true"] },
-            { title: "Self-balancing robot", status: "Done", tags: ["Control", "IMU", "Firmware"], description: "Developed a self-balancing robot prototype utilizing PID control algorithms, motor drive firmware, and kinematics tuning.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"] }
+            { title: "Bileg-wheeled robot", tags: ["Robotics", "Control", "RTOS"], description: "Developing a two-wheeled balancing robot with an articulated leg-like structure.", images: ["https://placehold.co/800x400/e4e4e7/71717a?text=Bileg-wheeled+Robot"] },
+            { title: "VLA AMR System", tags: ["AI", "Vision-Language-Action"], description: "Vision-Language-Action model for complex robotic manipulation.", images: ["https://placehold.co/800x400/e4e4e7/71717a?text=VLA+AMR+System"] },
+            { title: "Collaborative Robot System", tags: ["ROS2", "Moveit 2"], description: "Real-time obstacle avoidance and human-robot collaboration algorithms.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true"] },
+            { title: "Sound-based Laser Control", tags: ["Electronics", "Signal"], description: "Audio-driven laser control for interactive applications.", images: ["https://placehold.co/800x400/e4e4e7/71717a?text=Sound-based+Laser"] },
+            { title: "USB Power Meter", tags: ["EE", "Embedded"], description: "PCB design and firmware for precise power data acquisition.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/USBPM(1).jpg?raw=true"] },
+            { title: "Omni Wheel", tags: ["Hardware", "Robotics"], description: "Full-stack development of omni-wheel robot components.", images: ["https://placehold.co/800x400/e4e4e7/71717a?text=Omni+Wheel"] },
+            { title: "4-in-1 ToF Sensor", tags: ["Sensor", "Embedded"], description: "Compact 4-in-1 Time-of-Flight sensor board.", images: ["https://placehold.co/800x400/e4e4e7/71717a?text=4-in-1+ToF+Sensor"] },
+            { title: "Self-balancing Robot", tags: ["Control", "IMU"], description: "PID control algorithms for stable posture maintenance.", images: ["https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"] }
         ];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const projectListContainer = document.getElementById('project-list');
-            const modalOverlay = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeButton = document.querySelector('.modal-close-button');
+        const container = document.getElementById('project-list');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
 
-            projects.forEach(project => {
-                const projectDiv = document.createElement('div');
-                projectDiv.className = 'bg-gray-800/80 p-6 rounded-xl shadow-2xl border border-gray-700 w-full max-w-4xl flex flex-col md:flex-row gap-6';
-                const statusColor = project.status === 'Done' ? 'bg-green-600' : 'bg-indigo-600';
-                projectDiv.innerHTML = `
-                    <div class="w-full md:w-1/3">
-                        <img src="${project.images[0]}" alt="${project.title}" class="rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity w-full h-48 object-cover">
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-2xl font-bold text-white">${project.title}</h3>
-                            <span class="text-xs font-bold uppercase py-1 px-3 rounded-full ${statusColor} text-white">${project.status}</span>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            ${project.tags.map(tag => `<span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2 py-1 rounded border border-indigo-700/50">${tag}</span>`).join('')}
-                        </div>
-                        <p class="text-gray-300">${project.description}</p>
-                    </div>
-                `;
-                projectListContainer.appendChild(projectDiv);
-            });
-
-            projectListContainer.addEventListener('click', (e) => {
-                if (e.target.tagName === 'IMG') {
-                    modalImage.src = e.target.src;
-                    modalOverlay.classList.add('active');
-                }
-            });
-            closeButton.addEventListener('click', () => modalOverlay.classList.remove('active'));
+        projects.forEach(p => {
+            const el = document.createElement('div');
+            el.className = 'group';
+            // Image set to 1/3 width on md devices, centered
+            el.innerHTML = `
+                <div class="mb-12 flex justify-center">
+                    <img src="${p.images[0]}" alt="${p.title}" class="w-full md:w-1/3 h-auto cursor-pointer transition-transform duration-700 group-hover:scale-105 shadow-sm" onclick="showModal('${p.images[0]}')">
+                </div>
+                <div class="flex justify-between items-baseline mb-3 max-w-3xl mx-auto">
+                    <h3 class="text-lg font-light text-zinc-900 tracking-tight">${p.title}</h3>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400">${p.tags.join(' / ')}</span>
+                </div>
+                <p class="text-sm text-zinc-500 font-light leading-relaxed max-w-3xl mx-auto">${p.description}</p>
+            `;
+            container.appendChild(el);
         });
+
+        function showModal(src) {
+            modalImg.src = src;
+            modal.classList.add('active');
+        }
     </script>
 </body>
 </html>
