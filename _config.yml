@@ -1,0 +1,45 @@
+title: Yu Jen Chen
+tagline: Full-Stack Robotics Engineer
+description: >-
+  Full-Stack Robotics Engineer focused on blending advanced system
+  integration with elegant, functional design. Portfolio and daily
+  learning log.
+author: Yu Jen Chen
+github_username: CJxrobot
+url: "https://cjxrobot.github.io"
+baseurl: ""
+
+markdown: kramdown
+permalink: /log/:year/:month/:day/:title/
+
+collections:
+  projects:
+    output: true
+    permalink: /work/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# GitHub Pages builds with the github-pages gem (see Gemfile).
+# Keep only GH-Pages-whitelisted plugins above.
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - preview.html

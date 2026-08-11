@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview — Yu Jen Chen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/extra.css">
+</head>
+<body class="bg-zinc-50 text-zinc-900 antialiased">
+
+    <nav class="fixed top-0 w-full z-40 bg-zinc-50/80 backdrop-blur-md">
+        <div class="container mx-auto px-8 py-8 flex justify-between items-center">
+            <span class="text-xs tracking-[0.2em] uppercase font-medium">Yu Jen Chen</span>
+            <div class="flex gap-8 text-[10px] uppercase tracking-[0.3em] text-zinc-400">
+                <a href="#profile" class="hover:text-zinc-900 transition">Profile</a>
+                <a href="#work" class="hover:text-zinc-900 transition">Work</a>
+                <a href="#log-preview" class="hover:text-zinc-900 transition">Log</a>
+                <a href="#contact" class="hover:text-zinc-900 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-32">
+    <header class="pb-32 px-8 text-center">
+        <h1 class="text-3xl md:text-4xl font-light text-zinc-900 tracking-tight max-w-2xl mx-auto leading-relaxed">
+            Full-Stack Robotics Engineer.
+        </h1>
+    </header>
+
+    <main class="container mx-auto px-8 pb-32">
+
+        <section id="profile" class="mb-32">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-8 text-center">Profile</h2>
+            <div class="max-w-lg mx-auto text-center">
+                <p class="text-zinc-500 font-light leading-relaxed text-sm">
+                    Highly experienced Robot Engineer skilled in ROS2-based system integration, autonomous control, and embedded development. Proven full-stack expertise across software, firmware, electronic circuit design, and mechanical engineering.
+                </p>
+            </div>
+        </section>
+
+        <section id="work">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-20 text-center">Selected Work</h2>
+            <div class="max-w-5xl mx-auto space-y-40" id="project-list"></div>
+        </section>
+
+        <section id="log-preview" class="mt-32">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-16 text-center">Recent Log</h2>
+            <div class="max-w-2xl mx-auto divide-y divide-zinc-200">
+                <a href="#" class="flex justify-between items-baseline py-5 group">
+                    <span class="text-sm font-light text-zinc-700 group-hover:text-zinc-900 transition">Example: what a log entry looks like</span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 whitespace-nowrap ml-6">Aug 11, 2026</span>
+                </a>
+            </div>
+            <p class="text-center mt-10">
+                <a href="#" class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition underline underline-offset-8">View full log</a>
+            </p>
+        </section>
+
+        <section id="contact" class="mt-32 pt-24 border-t border-zinc-200 text-center">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-8">Get In Touch</h2>
+            <div class="flex justify-center gap-12 text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+                <a href="#" class="hover:text-zinc-900 transition underline underline-offset-8">Email</a>
+                <a href="https://github.com/CJxrobot" target="_blank" class="hover:text-zinc-900 transition underline underline-offset-8">GitHub</a>
+            </div>
+        </section>
+    </main>
+    </div>
+
+    <footer class="pb-16 pt-16 border-t border-zinc-200 text-center">
+        <p class="text-[9px] uppercase tracking-[0.2em] text-zinc-400">Built with Jekyll, hosted on GitHub Pages</p>
+    </footer>
+
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content relative">
+            <button onclick="document.getElementById('imageModal').classList.remove('active')" class="absolute -top-12 right-0 text-zinc-400 hover:text-zinc-900 text-xs uppercase tracking-[0.2em]">Close</button>
+            <img src="" alt="Full-screen image" id="modalImage">
+        </div>
+    </div>
+
+    <script>
+        const projects = [
+            { order:1, title: "Bileg-wheeled robot", tags: ["Robotics", "Control", "RTOS"], summary: "Developing a two-wheeled balancing robot with an articulated leg-like structure.", image: "https://placehold.co/800x400/e4e4e7/71717a?text=Bileg-wheeled+Robot" },
+            { order:2, title: "VLA AMR System", tags: ["AI", "Vision-Language-Action"], summary: "Vision-Language-Action model for complex robotic manipulation.", image: "https://placehold.co/800x400/e4e4e7/71717a?text=VLA+AMR+System" },
+            { order:3, title: "Collaborative Robot System", tags: ["ROS2", "Moveit 2"], summary: "Real-time obstacle avoidance and human-robot collaboration algorithms.", image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/HPE_1.jpg?raw=true" },
+            { order:4, title: "Sound-based Laser Control", tags: ["Electronics", "Signal"], summary: "Audio-driven laser control for interactive applications.", image: "https://placehold.co/800x400/e4e4e7/71717a?text=Sound-based+Laser" },
+            { order:5, title: "USB Power Meter", tags: ["EE", "Embedded"], summary: "PCB design and firmware for precise power data acquisition.", image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/USBPM(1).jpg?raw=true" },
+            { order:6, title: "Omni Wheel", tags: ["Hardware", "Robotics"], summary: "Full-stack development of omni-wheel robot components.", image: "https://placehold.co/800x400/e4e4e7/71717a?text=Omni+Wheel" },
+            { order:7, title: "4-in-1 ToF Sensor", tags: ["Sensor", "Embedded"], summary: "Compact 4-in-1 Time-of-Flight sensor board.", image: "https://placehold.co/800x400/e4e4e7/71717a?text=4-in-1+ToF+Sensor" },
+            { order:8, title: "Self-balancing Robot", tags: ["Control", "IMU"], summary: "PID control algorithms for stable posture maintenance.", image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true" }
+        ];
+        const container = document.getElementById('project-list');
+        projects.forEach(p => {
+            const el = document.createElement('div');
+            el.className = 'group';
+            el.innerHTML = `
+                <div class="mb-12 flex justify-center">
+                    <img src="${p.image}" alt="${p.title}" class="w-full md:w-1/3 h-auto cursor-pointer transition-transform duration-700 group-hover:scale-105 shadow-sm" onclick="showModal('${p.image}')">
+                </div>
+                <div class="flex justify-between items-baseline mb-3 max-w-3xl mx-auto flex-wrap gap-2">
+                    <h3 class="text-lg font-light text-zinc-900 tracking-tight">${p.title}</h3>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400">${p.tags.join(' / ')}</span>
+                </div>
+                <p class="text-sm text-zinc-500 font-light leading-relaxed max-w-3xl mx-auto">${p.summary}</p>
+            `;
+            container.appendChild(el);
+        });
+        function showModal(src) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModal').classList.add('active');
+        }
+    </script>
+</body>
+</html>
