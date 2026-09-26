@@ -6,16 +6,16 @@ layout: default
         <p class="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
             &gt; {{ site.author }}<span class="cursor-blink">&nbsp;</span>
         </p>
-        <h1 class="font-display font-semibold text-4xl md:text-6xl text-zinc-50 tracking-tight leading-[1.08] max-w-3xl">
+        <h1 class="font-display font-semibold text-4xl md:text-6xl text-zinc-900 tracking-tight leading-[1.08] max-w-3xl">
             {{ site.tagline }}.
         </h1>
-        <p class="font-sans text-zinc-400 leading-relaxed text-sm md:text-base max-w-xl mt-6">
+        <p class="font-sans text-zinc-600 leading-relaxed text-sm md:text-base max-w-xl mt-6">
             {{ content }}
         </p>
         <div class="flex flex-wrap gap-3 mt-10">
-            <a href="{{ '/#hardware-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2 hover:border-accent hover:text-accent transition">Hardware</a>
-            <a href="{{ '/#software-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2 hover:border-accent hover:text-accent transition">Software</a>
-            <a href="{{ '/#work' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border border-accent/40 text-accent px-4 py-2 hover:bg-accent hover:text-[#08080a] transition">
+            <a href="{{ '/#hardware-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border-2 border-zinc-900 text-zinc-700 px-4 py-2 hover:bg-zinc-900 hover:text-white transition">Hardware</a>
+            <a href="{{ '/#software-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border-2 border-zinc-900 text-zinc-700 px-4 py-2 hover:bg-zinc-900 hover:text-white transition">Software</a>
+            <a href="{{ '/#work' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border-2 border-accent text-accent px-4 py-2 hover:bg-accent hover:text-white transition">
                 {{ site.projects.size }} Projects
             </a>
         </div>
@@ -24,50 +24,56 @@ layout: default
 
 <main class="container mx-auto px-6 md:px-8 pb-32 max-w-5xl">
 
-    <section id="profile" class="mb-36 scroll-mt-24">
+    <section id="profile" class="mb-32 scroll-mt-24 pt-16 border-t-2 border-zinc-900">
         <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="01 /">Profile</h2>
-        <div class="grid md:grid-cols-2 gap-12 md:gap-8">
-            <div id="hardware-skills" class="scroll-mt-24">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-0 md:divide-x-2 md:divide-zinc-900">
+            <div id="hardware-skills" class="scroll-mt-24 md:pr-10">
                 <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Hardware</h3>
                 <ul class="space-y-3">
                     {% for skill in site.hardware_skills %}
-                    <li class="text-sm text-zinc-300 font-light border-l border-white/15 pl-4 py-0.5">{{ skill }}</li>
+                    <li class="text-sm text-zinc-700 font-light border-l-2 border-zinc-200 pl-4 py-0.5">{{ skill }}</li>
                     {% endfor %}
                 </ul>
             </div>
-            <div id="software-skills" class="scroll-mt-24">
+            <div id="software-skills" class="scroll-mt-24 md:pl-10">
                 <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Software</h3>
                 <ul class="space-y-3">
                     {% for skill in site.software_skills %}
-                    <li class="text-sm text-zinc-300 font-light border-l border-white/15 pl-4 py-0.5">{{ skill }}</li>
+                    <li class="text-sm text-zinc-700 font-light border-l-2 border-zinc-200 pl-4 py-0.5">{{ skill }}</li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="work" class="mb-36 scroll-mt-24">
+    <section id="work" class="mb-32 scroll-mt-24 pt-16 border-t-2 border-zinc-900">
         <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="02 /">Work</h2>
-        <div class="grid md:grid-cols-2 gap-10 md:gap-8 items-start">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-0 md:divide-x-2 md:divide-zinc-900 items-start">
 
-            <div>
-                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-6">Projects</h3>
+            <div class="md:pr-10">
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500 mb-6">Projects</h3>
                 <div class="space-y-6">
                     {% assign main_projects = site.projects | where_exp: "p", "p.kind != 'side-project'" | sort: 'order' %}
                     {% for project in main_projects %}
-                    <a href="{{ project.url | relative_url }}" class="project-card group block border border-white/10 hover:border-accent/50 transition-colors">
-                        <div class="overflow-hidden aspect-[4/3]">
+                    <a href="{{ project.url | relative_url }}" class="project-card group block border-2 border-zinc-900 hover:border-accent transition-colors">
+                        <div class="overflow-hidden aspect-[4/3] border-b-2 border-zinc-900">
                             <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
                         <div class="p-5">
-                            <div class="flex justify-between items-start gap-3 mb-2">
-                                <h4 class="font-display font-medium text-base text-zinc-50 tracking-tight">{{ project.title }}</h4>
-                                {% if project.domain %}
-                                <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-accent whitespace-nowrap mt-1">{{ project.domain }}</span>
-                                {% endif %}
+                            <div class="flex justify-between items-start gap-3 mb-1">
+                                <span class="font-mono text-[10px] text-zinc-400">{{ project.year }}</span>
+                                <div class="flex flex-wrap gap-1.5 justify-end">
+                                    {% if project.status %}
+                                    <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500 border border-zinc-300 px-1.5 py-0.5">{{ project.status }}</span>
+                                    {% endif %}
+                                    {% if project.domain %}
+                                    <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-accent whitespace-nowrap">{{ project.domain }}</span>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">{{ project.summary }}</p>
-                            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
+                            <h4 class="font-display font-medium text-base text-zinc-900 tracking-tight mb-2">{{ project.title }}</h4>
+                            <p class="text-xs text-zinc-600 font-light leading-relaxed mb-4">{{ project.summary }}</p>
+                            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-400">
                                 {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}
                             </div>
                         </div>
@@ -76,21 +82,29 @@ layout: default
                 </div>
             </div>
 
-            <div id="side-projects" class="scroll-mt-24">
-                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-2">Side Projects</h3>
-                <p class="text-xs text-zinc-600 font-light mb-6">Early-stage builds — in progress, not yet fully written up.</p>
+            <div id="side-projects" class="scroll-mt-24 md:pl-10">
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500 mb-2">Side Projects</h3>
+                <p class="text-xs text-zinc-500 font-light mb-6">Smaller builds, mentoring, and things still in progress.</p>
                 <div class="space-y-4">
                     {% assign side_projects = site.projects | where_exp: "p", "p.kind == 'side-project'" | sort: 'order' %}
                     {% for project in side_projects %}
-                    <a href="{{ project.url | relative_url }}" class="group flex justify-between items-center gap-4 border border-white/10 hover:border-accent/40 transition-colors px-5 py-4">
-                        <div>
-                            <h4 class="font-display font-medium text-sm text-zinc-200 tracking-tight group-hover:text-accent transition">{{ project.title }}</h4>
-                            <p class="text-xs text-zinc-500 font-light mt-1">{{ project.summary }}</p>
+                    <a href="{{ project.url | relative_url }}" class="group flex gap-4 border-2 border-zinc-900 hover:border-accent transition-colors p-4">
+                        <div class="w-20 h-20 flex-shrink-0 overflow-hidden border-2 border-zinc-900">
+                            <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
-                        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap border border-white/10 px-2 py-1">In Progress</span>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <span class="font-mono text-[10px] text-zinc-400">{{ project.year }}</span>
+                                {% if project.status %}
+                                <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500 border border-zinc-300 px-1.5 py-0.5 whitespace-nowrap">{{ project.status }}</span>
+                                {% endif %}
+                            </div>
+                            <h4 class="font-display font-medium text-sm text-zinc-900 tracking-tight group-hover:text-accent transition truncate">{{ project.title }}</h4>
+                            <p class="text-xs text-zinc-500 font-light mt-1 leading-relaxed">{{ project.summary }}</p>
+                        </div>
                     </a>
                     {% else %}
-                    <p class="text-xs text-zinc-600 font-light border border-white/10 px-5 py-4">Nothing here yet.</p>
+                    <p class="text-xs text-zinc-500 font-light border-2 border-zinc-900 px-5 py-4">Nothing here yet.</p>
                     {% endfor %}
                 </div>
             </div>
@@ -98,16 +112,16 @@ layout: default
         </div>
     </section>
 
-    <section id="log-preview" class="mb-36 scroll-mt-24">
+    <section id="log-preview" class="mb-32 scroll-mt-24 pt-16 border-t-2 border-zinc-900">
         <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="03 /">Recent Log</h2>
-        <div class="divide-y divide-white/10 border-t border-b border-white/10">
+        <div class="divide-y-2 divide-zinc-200 border-t-2 border-b-2 border-zinc-900">
             {% for post in site.posts limit:5 %}
             <a href="{{ post.url | relative_url }}" class="flex justify-between items-baseline py-4 group">
-                <span class="text-sm font-light text-zinc-300 group-hover:text-accent transition">{{ post.title }}</span>
-                <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap ml-6">{{ post.date | date: "%b %-d, %Y" }}</span>
+                <span class="text-sm font-light text-zinc-700 group-hover:text-accent transition">{{ post.title }}</span>
+                <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 whitespace-nowrap ml-6">{{ post.date | date: "%b %-d, %Y" }}</span>
             </a>
             {% else %}
-            <p class="text-center text-sm text-zinc-600 font-light py-8">No entries yet — the first one goes in <code>_posts/</code>.</p>
+            <p class="text-center text-sm text-zinc-500 font-light py-8">No entries yet — the first one goes in <code>_posts/</code>.</p>
             {% endfor %}
         </div>
         {% if site.posts.size > 0 %}
@@ -117,11 +131,11 @@ layout: default
         {% endif %}
     </section>
 
-    <section id="contact" class="pt-24 border-t border-white/10">
+    <section id="contact" class="pt-16 border-t-2 border-zinc-900">
         <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-8" data-index="04 /">Get In Touch</h2>
         <div class="flex flex-wrap gap-4">
-            <a href="mailto:{{ site.email | default: 'your.email@example.com' }}" class="font-mono text-xs uppercase tracking-[0.2em] border border-white/15 hover:border-accent hover:text-accent transition px-6 py-3">Email</a>
-            <a href="https://github.com/{{ site.github_username }}" target="_blank" class="font-mono text-xs uppercase tracking-[0.2em] border border-white/15 hover:border-accent hover:text-accent transition px-6 py-3">GitHub</a>
+            <a href="mailto:{{ site.email | default: 'your.email@example.com' }}" class="font-mono text-xs uppercase tracking-[0.2em] border-2 border-zinc-900 hover:bg-zinc-900 hover:text-white transition px-6 py-3">Email</a>
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" class="font-mono text-xs uppercase tracking-[0.2em] border-2 border-zinc-900 hover:bg-zinc-900 hover:text-white transition px-6 py-3">GitHub</a>
         </div>
     </section>
 </main>

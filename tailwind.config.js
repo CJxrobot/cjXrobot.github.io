@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: { accent: '#fbbf24' },
+      colors: { accent: '#d97706' },
       fontFamily: {
         display: ['"Space Grotesk"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],

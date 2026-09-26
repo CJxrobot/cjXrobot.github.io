@@ -1,12 +1,11 @@
 ---
-order: 8
+order: 2
+year: 2023
 title: "Self-balancing Robot"
 tags: [Control, IMU]
 summary: "PID control algorithms for stable posture maintenance."
 domain: "Hardware + Software"
-kind: project
+kind: side-project
 image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"
 ---
-PID control algorithms for stable posture maintenance.
-
-*Add build details, stack, and any results here.*
+A two-wheeled self-balancing robot using PID control on IMU feedback to maintain an upright posture.
