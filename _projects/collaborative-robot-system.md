@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 3
 year: 2024
 title: "Collaborative Robot System"
 tags: [ROS2, "Moveit 2", "7-DOF Arm"]

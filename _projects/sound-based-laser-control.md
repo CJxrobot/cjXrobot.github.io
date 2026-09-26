@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 1
 year: 2026
 title: "Sound-based Laser Control"
 tags: [Electronics, Signal, Firmware]

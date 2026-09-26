@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 3
 year: 2026
 title: "Bileg-wheeled Robot"
 tags: [Robotics, Control, RTOS]

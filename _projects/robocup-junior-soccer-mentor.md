@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 1
 year: 2026
 title: "RoboCup Junior Soccer — Team Mentor"
 tags: [Mentorship, Robotics, Competition]
