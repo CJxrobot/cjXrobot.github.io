@@ -1,13 +1,27 @@
 title: Yu Jen Chen
 tagline: Full-Stack Robotics Engineer
 description: >-
-  Full-Stack Robotics Engineer focused on blending advanced system
-  integration with elegant, functional design. Portfolio and daily
-  learning log.
+  Full-Stack Robotics Engineer working across hardware and software —
+  PCB design, embedded firmware, and ROS2 system integration. Portfolio
+  and daily learning log.
 author: Yu Jen Chen
 github_username: CJxrobot
 url: "https://cjxrobot.github.io"
 baseurl: ""
+
+hardware_skills:
+  - PCB Design & Fabrication
+  - Embedded Firmware (STM32 / ESP32)
+  - Sensor Integration — ToF, IMU
+  - Analog & Signal Electronics
+  - Mechanical & Robotics Hardware
+
+software_skills:
+  - ROS2 System Integration
+  - MoveIt 2 Motion Planning
+  - Real-Time Control — RTOS, PID
+  - Computer Vision & VLA Models
+  - Firmware / Embedded Software
 
 markdown: kramdown
 permalink: /log/:year/:month/:day/:title/

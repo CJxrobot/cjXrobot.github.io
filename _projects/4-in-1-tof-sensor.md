@@ -3,6 +3,8 @@ order: 7
 title: "4-in-1 ToF Sensor"
 tags: [Sensor, Embedded]
 summary: "Compact 4-in-1 Time-of-Flight sensor board."
+domain: "Hardware"
+kind: project
 image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Tof_Sensor_Board.png?raw=true"
 ---
 Compact 4-in-1 Time-of-Flight sensor board.
