@@ -1,5 +1,5 @@
 ---
-order: 4
+order: 2
 year: 2026
 title: "Carbon Fiber Omni Wheel"
 tags: [Hardware, Robotics, Mechanical]

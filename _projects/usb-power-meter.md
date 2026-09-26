@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 2
 year: 2026
 title: "USB Power Meter"
 tags: [EE, Embedded]

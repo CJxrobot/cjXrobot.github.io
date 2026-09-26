@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 4
 year: 2023
 title: "Self-balancing Robot"
 tags: [Control, IMU]
