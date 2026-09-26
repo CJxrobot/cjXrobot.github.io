@@ -55,29 +55,7 @@ layout: default
                 <div class="space-y-6">
                     {% assign main_projects = site.projects | where_exp: "p", "p.kind != 'side-project'" | sort: 'order' %}
                     {% for project in main_projects %}
-                    <a href="{{ project.url | relative_url }}" class="project-card group block border-2 border-zinc-900 hover:border-accent transition-colors">
-                        <div class="overflow-hidden aspect-[4/3] border-b-2 border-zinc-900">
-                            <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        </div>
-                        <div class="p-5">
-                            <div class="flex justify-between items-start gap-3 mb-1">
-                                <span class="font-mono text-[10px] text-zinc-400">{{ project.year }}</span>
-                                <div class="flex flex-wrap gap-1.5 justify-end">
-                                    {% if project.status %}
-                                    <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500 border border-zinc-300 px-1.5 py-0.5">{{ project.status }}</span>
-                                    {% endif %}
-                                    {% if project.domain %}
-                                    <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-accent whitespace-nowrap">{{ project.domain }}</span>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <h4 class="font-display font-medium text-base text-zinc-900 tracking-tight mb-2">{{ project.title }}</h4>
-                            <p class="text-xs text-zinc-600 font-light leading-relaxed mb-4">{{ project.summary }}</p>
-                            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-400">
-                                {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}
-                            </div>
-                        </div>
-                    </a>
+                    {% include project-card.html project=project %}
                     {% endfor %}
                 </div>
             </div>
@@ -85,24 +63,10 @@ layout: default
             <div id="side-projects" class="scroll-mt-24 md:pl-10">
                 <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500 mb-2">Side Projects</h3>
                 <p class="text-xs text-zinc-500 font-light mb-6">Smaller builds, mentoring, and things still in progress.</p>
-                <div class="space-y-4">
+                <div class="space-y-6">
                     {% assign side_projects = site.projects | where_exp: "p", "p.kind == 'side-project'" | sort: 'order' %}
                     {% for project in side_projects %}
-                    <a href="{{ project.url | relative_url }}" class="group flex gap-4 border-2 border-zinc-900 hover:border-accent transition-colors p-4">
-                        <div class="w-20 h-20 flex-shrink-0 overflow-hidden border-2 border-zinc-900">
-                            <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        </div>
-                        <div class="min-w-0 flex-1">
-                            <div class="flex justify-between items-start gap-2 mb-1">
-                                <span class="font-mono text-[10px] text-zinc-400">{{ project.year }}</span>
-                                {% if project.status %}
-                                <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500 border border-zinc-300 px-1.5 py-0.5 whitespace-nowrap">{{ project.status }}</span>
-                                {% endif %}
-                            </div>
-                            <h4 class="font-display font-medium text-sm text-zinc-900 tracking-tight group-hover:text-accent transition truncate">{{ project.title }}</h4>
-                            <p class="text-xs text-zinc-500 font-light mt-1 leading-relaxed">{{ project.summary }}</p>
-                        </div>
-                    </a>
+                    {% include project-card.html project=project %}
                     {% else %}
                     <p class="text-xs text-zinc-500 font-light border-2 border-zinc-900 px-5 py-4">Nothing here yet.</p>
                     {% endfor %}

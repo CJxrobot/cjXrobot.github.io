@@ -6,8 +6,8 @@ tags: [Mentorship, Robotics, Competition]
 summary: "Team mentor for a RoboCup Junior Soccer team."
 domain: "Mentorship"
 kind: side-project
-image: "https://placehold.co/800x400/f4f4f5/71717a?text=RCJ+Soccer+2026"
+image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/RCJSoccer2026.png?raw=true"
 ---
 Serving as team mentor for a RoboCup Junior Soccer team — guiding robot design, strategy, and troubleshooting through the competition season.
 
-*Photos pending upload — RCJSoccer2026.png and RCJSoccer20262.jpg aren't in the repo yet.*
+![Two of the team's omni-wheel soccer robots on the pitch](https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/RCJSoccer20262.jpg?raw=true)
