@@ -1,12 +1,14 @@
 ---
-order: 4
+order: 2
+year: 2026
 title: "Sound-based Laser Control"
-tags: [Electronics, Signal]
-summary: "Audio-driven laser control for interactive applications."
+tags: [Electronics, Signal, Firmware]
+summary: "Audio-driven laser control for interactive applications — circuit and firmware design."
 domain: "Hardware"
-kind: side-project
-image: "https://placehold.co/800x400/18181b/71717a?text=Sound-based+Laser"
+kind: project
+status: placeholder
+image: "https://placehold.co/800x400/f4f4f5/71717a?text=Sound-based+Laser"
 ---
-Audio-driven laser control for interactive applications.
+Audio-driven laser control for interactive applications. In charge of the circuit design — analog front-end and laser drive electronics — and the firmware that ties audio signal processing to laser output.
 
-*Replace this with a full write-up and a real photo once ready.*
+*Write-up and photos coming once the build is further along.*

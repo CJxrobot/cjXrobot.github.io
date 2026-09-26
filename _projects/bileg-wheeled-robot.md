@@ -1,12 +1,14 @@
 ---
-order: 1
-title: "Bileg-wheeled robot"
+order: 5
+year: 2026
+title: "Bileg-wheeled Robot"
 tags: [Robotics, Control, RTOS]
 summary: "Developing a two-wheeled balancing robot with an articulated leg-like structure."
 domain: "Hardware + Software"
 kind: side-project
-image: "https://placehold.co/800x400/18181b/71717a?text=Bileg-wheeled+Robot"
+status: upcoming
+image: "https://placehold.co/800x400/f4f4f5/71717a?text=Bileg-wheeled+Robot"
 ---
 Developing a two-wheeled balancing robot with an articulated leg-like structure.
 
-*Replace this with a full write-up and a real photo once ready.*
+*Write-up and photos coming once the build is underway.*

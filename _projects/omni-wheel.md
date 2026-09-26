@@ -1,12 +1,11 @@
 ---
-order: 6
-title: "Omni Wheel"
-tags: [Hardware, Robotics]
-summary: "Full-stack development of omni-wheel robot components."
+order: 4
+year: 2026
+title: "Carbon Fiber Omni Wheel"
+tags: [Hardware, Robotics, Mechanical]
+summary: "Mechanical design and fabrication of a carbon-fiber omni wheel."
 domain: "Hardware"
-kind: project
+kind: side-project
 image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/omni_wheel_real.jpg?raw=true"
 ---
-Full-stack development of omni-wheel robot components.
-
-*Add build details, stack, and any results here.*
+Mechanical design and fabrication of a custom carbon-fiber omni wheel — a lightweight, high-strength drive wheel for omnidirectional robot bases.

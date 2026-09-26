@@ -9,13 +9,43 @@ original page.
 ## What's here
 
 - `_layouts/` — page templates (home, project detail, log entry, shell)
-- `_projects/` — your 8 projects, ported over exactly as they were,
-  each now also has its own page at `/work/<slug>/`
+- `_projects/` — your projects, each with a `domain` (Hardware /
+  Software / Hardware + Software) and `kind` (`project` or
+  `side-project`) field, and its own page at `/work/<slug>/`
 - `_posts/` — log entries, one per day, filename `YYYY-MM-DD-title.md`
-- `assets/css/extra.css` — the lightbox/modal styles from your original
-  page (everything else is Tailwind CDN, same as before)
+- `assets/css/tailwind.css` — **compiled, static** Tailwind output
+  (see "Styling" below — do not hand-edit this file)
+- `assets/css/extra.css` — hand-written extras on top: the dark grid
+  background, the lightbox/modal, the hero cursor blink
 - `index.md` — homepage body (your profile bio)
 - `log.md` — full log listing page
+
+## Styling
+
+The site used to load Tailwind from `cdn.tailwindcss.com` at runtime.
+That's fine for prototyping but not for a live site — it's a hard
+dependency on one third-party script loading successfully on every
+visit, and Tailwind itself
+[warns against using it in production](https://tailwindcss.com/docs/installation/play-cdn).
+When that script is blocked or slow (ad blockers, some corporate
+networks, an outage), every utility class silently stops working and
+the page can end up with dead-looking, unstyled buttons and links.
+
+So the site now ships a **compiled, static** `assets/css/tailwind.css`
+instead — no runtime JS dependency, no CDN, works offline. It's
+generated from `tailwind.config.js` + `assets/css/tailwind.src.css`
+by scanning the class names used in `_layouts/`, `_projects/`,
+`_posts/`, `index.md`, and `log.md`.
+
+**If you add or change Tailwind classes in any of those files, you
+need to rebuild the CSS** (there's no CI step that does this for you):
+
+```bash
+npm install
+npx tailwindcss -i ./assets/css/tailwind.src.css -o ./assets/css/tailwind.css --minify
+```
+
+Then commit the updated `assets/css/tailwind.css`.
 
 ## Deploying
 

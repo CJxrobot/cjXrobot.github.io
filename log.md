@@ -7,14 +7,14 @@ permalink: /log/
     <h1 class="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-16">
         <span class="text-accent">&gt;</span> Log
     </h1>
-    <div class="divide-y divide-white/10 border-t border-b border-white/10">
+    <div class="divide-y-2 divide-zinc-200 border-t-2 border-b-2 border-zinc-900">
         {% for post in site.posts %}
         <a href="{{ post.url | relative_url }}" class="flex justify-between items-baseline py-5 group">
-            <span class="text-sm font-light text-zinc-300 group-hover:text-accent transition">{{ post.title }}</span>
-            <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap ml-6">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <span class="text-sm font-light text-zinc-700 group-hover:text-accent transition">{{ post.title }}</span>
+            <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 whitespace-nowrap ml-6">{{ post.date | date: "%b %-d, %Y" }}</span>
         </a>
         {% else %}
-        <p class="text-center text-sm text-zinc-600 font-light py-8">No entries yet — add one to <code>_posts/</code>.</p>
+        <p class="text-center text-sm text-zinc-500 font-light py-8">No entries yet — add one to <code>_posts/</code>.</p>
         {% endfor %}
     </div>
 </div>
