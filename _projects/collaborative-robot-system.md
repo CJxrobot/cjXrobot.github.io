@@ -2,7 +2,7 @@
 order: 3
 year: 2024
 title: "Collaborative Robot System"
-tags: [ROS2, "Moveit 2", "7-DOF Arm"]
+tags: [ROS2, "MoveIt 2", "7-DOF Arm"]
 summary: "A stereo-camera cobot with human pose estimation and 7-DOF arm control, from simulation to real deployment."
 domain: "Hardware + Software"
 kind: project

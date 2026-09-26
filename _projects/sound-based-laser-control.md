@@ -6,9 +6,8 @@ tags: [Electronics, Signal, Firmware]
 summary: "Audio-driven laser control for interactive applications — circuit and firmware design."
 domain: "Hardware"
 kind: project
-status: placeholder
-image: "https://placehold.co/800x400/f4f4f5/71717a?text=Sound-based+Laser"
+image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/SoundControlLaserSystem.jpg?raw=true"
 ---
-Audio-driven laser control for interactive applications. In charge of the circuit design — analog front-end and laser drive electronics — and the firmware that ties audio signal processing to laser output.
+Audio-driven laser control for interactive applications, built around separate red, green, and blue laser driver modules combined over fiber optics into a single beam. In charge of the circuit design — analog front-end and laser drive electronics — and the firmware that ties audio signal processing to laser output.
 
-*Write-up and photos coming once the build is further along.*
+![One of the laser driver PCBs](https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/SoundControlLaserSystem2.jpg?raw=true)
