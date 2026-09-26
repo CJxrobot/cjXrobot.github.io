@@ -7,5 +7,6 @@ summary: "PID control algorithms for stable posture maintenance."
 domain: "Hardware + Software"
 kind: side-project
 image: "https://github.com/CJxrobot/cjXrobot.github.io/blob/main/Images/Segway.png?raw=true"
+image_scale: 75
 ---
 A two-wheeled self-balancing robot using PID control on IMU feedback to maintain an upright posture.

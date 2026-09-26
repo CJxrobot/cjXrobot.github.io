@@ -9,9 +9,9 @@ layout: default
         <h1 class="font-display font-semibold text-4xl md:text-6xl text-zinc-900 tracking-tight leading-[1.08] max-w-3xl">
             {{ site.tagline }}.
         </h1>
-        <p class="font-sans text-zinc-600 leading-relaxed text-sm md:text-base max-w-xl mt-6">
+        <div class="font-sans text-zinc-600 leading-relaxed text-sm md:text-base max-w-xl mt-6">
             {{ content }}
-        </p>
+        </div>
         <div class="flex flex-wrap gap-3 mt-10">
             <a href="{{ '/#hardware-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border-2 border-zinc-900 text-zinc-700 px-4 py-2 hover:bg-zinc-900 hover:text-white transition">Hardware</a>
             <a href="{{ '/#software-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border-2 border-zinc-900 text-zinc-700 px-4 py-2 hover:bg-zinc-900 hover:text-white transition">Software</a>
@@ -24,22 +24,22 @@ layout: default
 
 <main class="container mx-auto px-6 md:px-8 pb-32 max-w-5xl">
 
-    <section id="profile" class="mb-32 scroll-mt-24 pt-16 border-t-2 border-zinc-900">
-        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="01 /">Profile</h2>
-        <div class="grid md:grid-cols-2 gap-12 md:gap-0 md:divide-x-2 md:divide-zinc-900">
+    <section id="profile" class="mb-20 scroll-mt-24 pt-12 border-t-2 border-zinc-900">
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-6" data-index="01 /">Profile</h2>
+        <div class="grid md:grid-cols-2 gap-6 md:gap-0 md:divide-x-2 md:divide-zinc-900">
             <div id="hardware-skills" class="scroll-mt-24 md:pr-10">
-                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Hardware</h3>
-                <ul class="space-y-3">
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-3">Hardware</h3>
+                <ul class="space-y-1.5">
                     {% for skill in site.hardware_skills %}
-                    <li class="text-sm text-zinc-700 font-light border-l-2 border-zinc-200 pl-4 py-0.5">{{ skill }}</li>
+                    <li class="text-sm text-zinc-700 font-light border-l-2 border-zinc-200 pl-4">{{ skill }}</li>
                     {% endfor %}
                 </ul>
             </div>
             <div id="software-skills" class="scroll-mt-24 md:pl-10">
-                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Software</h3>
-                <ul class="space-y-3">
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-3">Software</h3>
+                <ul class="space-y-1.5">
                     {% for skill in site.software_skills %}
-                    <li class="text-sm text-zinc-700 font-light border-l-2 border-zinc-200 pl-4 py-0.5">{{ skill }}</li>
+                    <li class="text-sm text-zinc-700 font-light border-l-2 border-zinc-200 pl-4">{{ skill }}</li>
                     {% endfor %}
                 </ul>
             </div>
