@@ -34,8 +34,10 @@ the page can end up with dead-looking, unstyled buttons and links.
 So the site now ships a **compiled, static** `assets/css/tailwind.css`
 instead — no runtime JS dependency, no CDN, works offline. It's
 generated from `tailwind.config.js` + `assets/css/tailwind.src.css`
-by scanning the class names used in `_layouts/`, `_projects/`,
-`_posts/`, `index.md`, and `log.md`.
+by scanning the class names used in `_layouts/`, `_includes/`,
+`_projects/`, `_posts/`, `index.md`, and `log.md` — a class used only
+in a file outside that list (e.g. a new `_includes/` partial you forget
+to add to `tailwind.config.js`) silently won't make it into the build.
 
 **If you add or change Tailwind classes in any of those files, you
 need to rebuild the CSS** (there's no CI step that does this for you):
