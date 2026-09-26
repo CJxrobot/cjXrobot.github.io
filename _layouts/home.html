@@ -13,11 +13,11 @@ layout: default
             {{ content }}
         </p>
         <div class="flex flex-wrap gap-3 mt-10">
-            <span class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2">Hardware</span>
-            <span class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2">Software</span>
-            <span class="font-mono text-[10px] uppercase tracking-[0.2em] border border-accent/40 text-accent px-4 py-2">
+            <a href="{{ '/#hardware-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2 hover:border-accent hover:text-accent transition">Hardware</a>
+            <a href="{{ '/#software-skills' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2 hover:border-accent hover:text-accent transition">Software</a>
+            <a href="{{ '/#work' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.2em] border border-accent/40 text-accent px-4 py-2 hover:bg-accent hover:text-[#08080a] transition">
                 {{ site.projects.size }} Projects
-            </span>
+            </a>
         </div>
     </div>
 </header>
@@ -27,7 +27,7 @@ layout: default
     <section id="profile" class="mb-36 scroll-mt-24">
         <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="01 /">Profile</h2>
         <div class="grid md:grid-cols-2 gap-12 md:gap-8">
-            <div>
+            <div id="hardware-skills" class="scroll-mt-24">
                 <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Hardware</h3>
                 <ul class="space-y-3">
                     {% for skill in site.hardware_skills %}
@@ -35,7 +35,7 @@ layout: default
                     {% endfor %}
                 </ul>
             </div>
-            <div>
+            <div id="software-skills" class="scroll-mt-24">
                 <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Software</h3>
                 <ul class="space-y-3">
                     {% for skill in site.software_skills %}
@@ -47,52 +47,59 @@ layout: default
     </section>
 
     <section id="work" class="mb-36 scroll-mt-24">
-        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="02 /">Projects</h2>
-        <div class="grid sm:grid-cols-2 gap-6">
-            {% assign main_projects = site.projects | where_exp: "p", "p.kind != 'side-project'" | sort: 'order' %}
-            {% for project in main_projects %}
-            <a href="{{ project.url | relative_url }}" class="project-card group block border border-white/10 hover:border-accent/50 transition-colors">
-                <div class="overflow-hidden aspect-[4/3]">
-                    <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5">
-                    <div class="flex justify-between items-start gap-3 mb-2">
-                        <h3 class="font-display font-medium text-base text-zinc-50 tracking-tight">{{ project.title }}</h3>
-                        {% if project.domain %}
-                        <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-accent whitespace-nowrap mt-1">{{ project.domain }}</span>
-                        {% endif %}
-                    </div>
-                    <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">{{ project.summary }}</p>
-                    <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
-                        {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </section>
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="02 /">Work</h2>
+        <div class="grid md:grid-cols-2 gap-10 md:gap-8 items-start">
 
-    {% assign side_projects = site.projects | where_exp: "p", "p.kind == 'side-project'" | sort: 'order' %}
-    {% if side_projects.size > 0 %}
-    <section id="side-work" class="mb-36 scroll-mt-24">
-        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-3" data-index="03 /">Side Projects</h2>
-        <p class="text-xs text-zinc-600 font-light mb-10">Early-stage builds — in progress, not yet fully written up.</p>
-        <div class="grid sm:grid-cols-2 gap-4">
-            {% for project in side_projects %}
-            <a href="{{ project.url | relative_url }}" class="group flex justify-between items-center gap-4 border border-white/10 hover:border-accent/40 transition-colors px-5 py-4">
-                <div>
-                    <h3 class="font-display font-medium text-sm text-zinc-200 tracking-tight group-hover:text-accent transition">{{ project.title }}</h3>
-                    <p class="text-xs text-zinc-500 font-light mt-1">{{ project.summary }}</p>
+            <div>
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-6">Projects</h3>
+                <div class="space-y-6">
+                    {% assign main_projects = site.projects | where_exp: "p", "p.kind != 'side-project'" | sort: 'order' %}
+                    {% for project in main_projects %}
+                    <a href="{{ project.url | relative_url }}" class="project-card group block border border-white/10 hover:border-accent/50 transition-colors">
+                        <div class="overflow-hidden aspect-[4/3]">
+                            <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-start gap-3 mb-2">
+                                <h4 class="font-display font-medium text-base text-zinc-50 tracking-tight">{{ project.title }}</h4>
+                                {% if project.domain %}
+                                <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-accent whitespace-nowrap mt-1">{{ project.domain }}</span>
+                                {% endif %}
+                            </div>
+                            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">{{ project.summary }}</p>
+                            <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
+                                {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
-                <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap border border-white/10 px-2 py-1">In Progress</span>
-            </a>
-            {% endfor %}
+            </div>
+
+            <div id="side-projects" class="scroll-mt-24">
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-2">Side Projects</h3>
+                <p class="text-xs text-zinc-600 font-light mb-6">Early-stage builds — in progress, not yet fully written up.</p>
+                <div class="space-y-4">
+                    {% assign side_projects = site.projects | where_exp: "p", "p.kind == 'side-project'" | sort: 'order' %}
+                    {% for project in side_projects %}
+                    <a href="{{ project.url | relative_url }}" class="group flex justify-between items-center gap-4 border border-white/10 hover:border-accent/40 transition-colors px-5 py-4">
+                        <div>
+                            <h4 class="font-display font-medium text-sm text-zinc-200 tracking-tight group-hover:text-accent transition">{{ project.title }}</h4>
+                            <p class="text-xs text-zinc-500 font-light mt-1">{{ project.summary }}</p>
+                        </div>
+                        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap border border-white/10 px-2 py-1">In Progress</span>
+                    </a>
+                    {% else %}
+                    <p class="text-xs text-zinc-600 font-light border border-white/10 px-5 py-4">Nothing here yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </section>
-    {% endif %}
 
     <section id="log-preview" class="mb-36 scroll-mt-24">
-        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="04 /">Recent Log</h2>
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="03 /">Recent Log</h2>
         <div class="divide-y divide-white/10 border-t border-b border-white/10">
             {% for post in site.posts limit:5 %}
             <a href="{{ post.url | relative_url }}" class="flex justify-between items-baseline py-4 group">
@@ -111,7 +118,7 @@ layout: default
     </section>
 
     <section id="contact" class="pt-24 border-t border-white/10">
-        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-8" data-index="05 /">Get In Touch</h2>
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-8" data-index="04 /">Get In Touch</h2>
         <div class="flex flex-wrap gap-4">
             <a href="mailto:{{ site.email | default: 'your.email@example.com' }}" class="font-mono text-xs uppercase tracking-[0.2em] border border-white/15 hover:border-accent hover:text-accent transition px-6 py-3">Email</a>
             <a href="https://github.com/{{ site.github_username }}" target="_blank" class="font-mono text-xs uppercase tracking-[0.2em] border border-white/15 hover:border-accent hover:text-accent transition px-6 py-3">GitHub</a>

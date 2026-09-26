@@ -20,7 +20,7 @@ software_skills:
   - ROS2 System Integration
   - MoveIt 2 Motion Planning
   - Real-Time Control — RTOS, PID
-  - Computer Vision & VLA Models
+  - Computer Vision & Perception
   - Firmware / Embedded Software
 
 markdown: kramdown
@@ -56,4 +56,8 @@ exclude:
   - Gemfile.lock
   - README.md
   - node_modules
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - assets/css/tailwind.src.css
   - preview.html
