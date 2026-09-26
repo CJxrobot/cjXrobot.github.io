@@ -1,87 +1,120 @@
 ---
 layout: default
 ---
-<header class="pb-32 px-8 text-center">
-    <h1 class="text-3xl md:text-4xl font-light text-zinc-900 tracking-tight max-w-2xl mx-auto leading-relaxed">
-        {{ site.tagline }}.
-    </h1>
+<header class="px-6 md:px-8 pt-16 pb-28 md:pt-24 md:pb-36">
+    <div class="container mx-auto max-w-5xl">
+        <p class="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
+            &gt; {{ site.author }}<span class="cursor-blink">&nbsp;</span>
+        </p>
+        <h1 class="font-display font-semibold text-4xl md:text-6xl text-zinc-50 tracking-tight leading-[1.08] max-w-3xl">
+            {{ site.tagline }}.
+        </h1>
+        <p class="font-sans text-zinc-400 leading-relaxed text-sm md:text-base max-w-xl mt-6">
+            {{ content }}
+        </p>
+        <div class="flex flex-wrap gap-3 mt-10">
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2">Hardware</span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] border border-white/15 text-zinc-300 px-4 py-2">Software</span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] border border-accent/40 text-accent px-4 py-2">
+                {{ site.projects.size }} Projects
+            </span>
+        </div>
+    </div>
 </header>
 
-<main class="container mx-auto px-8 pb-32">
+<main class="container mx-auto px-6 md:px-8 pb-32 max-w-5xl">
 
-    <section id="profile" class="mb-32">
-        <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-8 text-center">Profile</h2>
-        <div class="max-w-lg mx-auto text-center">
-            <p class="text-zinc-500 font-light leading-relaxed text-sm">
-                {{ content }}
-            </p>
+    <section id="profile" class="mb-36 scroll-mt-24">
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="01 /">Profile</h2>
+        <div class="grid md:grid-cols-2 gap-12 md:gap-8">
+            <div>
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Hardware</h3>
+                <ul class="space-y-3">
+                    {% for skill in site.hardware_skills %}
+                    <li class="text-sm text-zinc-300 font-light border-l border-white/15 pl-4 py-0.5">{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.25em] text-accent mb-5">Software</h3>
+                <ul class="space-y-3">
+                    {% for skill in site.software_skills %}
+                    <li class="text-sm text-zinc-300 font-light border-l border-white/15 pl-4 py-0.5">{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section id="work">
-        <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-20 text-center">Selected Work</h2>
-        <div class="max-w-5xl mx-auto space-y-40">
-            {% assign ordered_projects = site.projects | sort: 'order' %}
-            {% for project in ordered_projects %}
-            <div class="group">
-                <div class="mb-12 flex justify-center">
-                    <a href="{{ project.url | relative_url }}">
-                    <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full md:w-1/3 h-auto cursor-pointer transition-transform duration-700 group-hover:scale-105 shadow-sm">
-                    </a>
+    <section id="work" class="mb-36 scroll-mt-24">
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="02 /">Projects</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+            {% assign main_projects = site.projects | where_exp: "p", "p.kind != 'side-project'" | sort: 'order' %}
+            {% for project in main_projects %}
+            <a href="{{ project.url | relative_url }}" class="project-card group block border border-white/10 hover:border-accent/50 transition-colors">
+                <div class="overflow-hidden aspect-[4/3]">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                 </div>
-                <div class="flex justify-between items-baseline mb-3 max-w-3xl mx-auto flex-wrap gap-2">
-                    <h3 class="text-lg font-light text-zinc-900 tracking-tight">
-                        <a href="{{ project.url | relative_url }}" class="hover:text-zinc-600 transition">{{ project.title }}</a>
-                    </h3>
-                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400">{{ project.tags | join: " / " }}</span>
+                <div class="p-5">
+                    <div class="flex justify-between items-start gap-3 mb-2">
+                        <h3 class="font-display font-medium text-base text-zinc-50 tracking-tight">{{ project.title }}</h3>
+                        {% if project.domain %}
+                        <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-accent whitespace-nowrap mt-1">{{ project.domain }}</span>
+                        {% endif %}
+                    </div>
+                    <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">{{ project.summary }}</p>
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
+                        {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}
+                    </div>
                 </div>
-                <p class="text-sm text-zinc-500 font-light leading-relaxed max-w-3xl mx-auto">{{ project.summary }}</p>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </section>
 
-    <section id="log-preview" class="mt-32">
-        <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-16 text-center">Recent Log</h2>
-        <div class="max-w-2xl mx-auto divide-y divide-zinc-200">
+    {% assign side_projects = site.projects | where_exp: "p", "p.kind == 'side-project'" | sort: 'order' %}
+    {% if side_projects.size > 0 %}
+    <section id="side-work" class="mb-36 scroll-mt-24">
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-3" data-index="03 /">Side Projects</h2>
+        <p class="text-xs text-zinc-600 font-light mb-10">Early-stage builds — in progress, not yet fully written up.</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+            {% for project in side_projects %}
+            <a href="{{ project.url | relative_url }}" class="group flex justify-between items-center gap-4 border border-white/10 hover:border-accent/40 transition-colors px-5 py-4">
+                <div>
+                    <h3 class="font-display font-medium text-sm text-zinc-200 tracking-tight group-hover:text-accent transition">{{ project.title }}</h3>
+                    <p class="text-xs text-zinc-500 font-light mt-1">{{ project.summary }}</p>
+                </div>
+                <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap border border-white/10 px-2 py-1">In Progress</span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section id="log-preview" class="mb-36 scroll-mt-24">
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-12" data-index="04 /">Recent Log</h2>
+        <div class="divide-y divide-white/10 border-t border-b border-white/10">
             {% for post in site.posts limit:5 %}
-            <a href="{{ post.url | relative_url }}" class="flex justify-between items-baseline py-5 group">
-                <span class="text-sm font-light text-zinc-700 group-hover:text-zinc-900 transition">{{ post.title }}</span>
-                <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 whitespace-nowrap ml-6">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <a href="{{ post.url | relative_url }}" class="flex justify-between items-baseline py-4 group">
+                <span class="text-sm font-light text-zinc-300 group-hover:text-accent transition">{{ post.title }}</span>
+                <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 whitespace-nowrap ml-6">{{ post.date | date: "%b %-d, %Y" }}</span>
             </a>
             {% else %}
-            <p class="text-center text-sm text-zinc-400 font-light py-8">No entries yet — the first one goes in <code>_posts/</code>.</p>
+            <p class="text-center text-sm text-zinc-600 font-light py-8">No entries yet — the first one goes in <code>_posts/</code>.</p>
             {% endfor %}
         </div>
         {% if site.posts.size > 0 %}
-        <p class="text-center mt-10">
-            <a href="{{ '/log/' | relative_url }}" class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition underline underline-offset-8">View full log</a>
+        <p class="mt-8">
+            <a href="{{ '/log/' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500 hover:text-accent transition">View full log &rarr;</a>
         </p>
         {% endif %}
     </section>
 
-    <section id="contact" class="mt-32 pt-24 border-t border-zinc-200 text-center">
-        <h2 class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-8">Get In Touch</h2>
-        <div class="flex justify-center gap-12 text-[10px] uppercase tracking-[0.2em] text-zinc-400">
-            <a href="mailto:{{ site.email | default: 'your.email@example.com' }}" class="hover:text-zinc-900 transition underline underline-offset-8">Email</a>
-            <a href="https://github.com/{{ site.github_username }}" target="_blank" class="hover:text-zinc-900 transition underline underline-offset-8">GitHub</a>
+    <section id="contact" class="pt-24 border-t border-white/10">
+        <h2 class="section-index font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 mb-8" data-index="05 /">Get In Touch</h2>
+        <div class="flex flex-wrap gap-4">
+            <a href="mailto:{{ site.email | default: 'your.email@example.com' }}" class="font-mono text-xs uppercase tracking-[0.2em] border border-white/15 hover:border-accent hover:text-accent transition px-6 py-3">Email</a>
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" class="font-mono text-xs uppercase tracking-[0.2em] border border-white/15 hover:border-accent hover:text-accent transition px-6 py-3">GitHub</a>
         </div>
     </section>
 </main>
-
-<div class="modal-overlay" id="imageModal">
-    <div class="modal-content relative">
-        <button onclick="document.getElementById('imageModal').classList.remove('active')" class="absolute -top-12 right-0 text-zinc-400 hover:text-zinc-900 text-xs uppercase tracking-[0.2em]">Close</button>
-        <img src="" alt="Full-screen image" id="modalImage">
-    </div>
-</div>
-
-<script>
-    document.querySelectorAll('#work img').forEach(function (img) {
-        img.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('modalImage').src = img.src;
-            document.getElementById('imageModal').classList.add('active');
-        });
-    });
-</script>

@@ -1,27 +1,56 @@
 ---
 layout: default
 ---
-<article class="container mx-auto px-8 pb-32 max-w-3xl">
-    <p class="text-center mb-16">
-        <a href="{{ '/#work' | relative_url }}" class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition">&larr; Back to work</a>
+<article class="container mx-auto px-6 md:px-8 pb-32 max-w-3xl">
+    <p class="mb-16">
+        <a href="{{ '/#work' | relative_url }}" class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500 hover:text-accent transition">&larr; Back to work</a>
     </p>
 
-    <div class="mb-12 flex justify-center">
-        <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full md:w-2/3 h-auto shadow-sm">
+    <div class="mb-10 border border-white/10 overflow-hidden">
+        <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-auto">
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-5">
+        {% if page.kind == "side-project" %}
+        <span class="font-mono text-[9px] uppercase tracking-[0.2em] border border-white/15 text-zinc-500 px-3 py-1">In Progress</span>
+        {% endif %}
+        {% if page.domain %}
+        <span class="font-mono text-[9px] uppercase tracking-[0.2em] border border-accent/40 text-accent px-3 py-1">{{ page.domain }}</span>
+        {% endif %}
     </div>
 
     <div class="flex justify-between items-baseline mb-3 flex-wrap gap-2">
-        <h1 class="text-xl font-light text-zinc-900 tracking-tight">{{ page.title }}</h1>
-        <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-400">{{ page.tags | join: " / " }}</span>
+        <h1 class="font-display font-semibold text-2xl md:text-3xl text-zinc-50 tracking-tight">{{ page.title }}</h1>
+        <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-500">{{ page.tags | join: " / " }}</span>
     </div>
 
-    <div class="prose prose-zinc prose-sm font-light text-zinc-500 leading-relaxed max-w-none mt-8">
+    <div class="lightbox-content prose prose-invert prose-sm font-light text-zinc-400 leading-relaxed max-w-none mt-10">
         {{ content }}
     </div>
 
     {% if page.repo %}
-    <p class="mt-12 text-center">
-        <a href="{{ page.repo }}" target="_blank" class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition underline underline-offset-8">Source on GitHub</a>
+    <p class="mt-14">
+        <a href="{{ page.repo }}" target="_blank" class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500 hover:text-accent transition underline underline-offset-8">Source on GitHub</a>
     </p>
     {% endif %}
 </article>
+
+<div class="modal-overlay" id="imageModal">
+    <div class="modal-content relative">
+        <button onclick="document.getElementById('imageModal').classList.remove('active')" class="absolute -top-12 right-0 text-zinc-500 hover:text-accent font-mono text-xs uppercase tracking-[0.2em]">Close</button>
+        <img src="" alt="Full-screen image" id="modalImage">
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.lightbox-content img').forEach(function (img) {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function () {
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('imageModal').classList.add('active');
+        });
+    });
+    document.getElementById('imageModal').addEventListener('click', function (e) {
+        if (e.target === this) this.classList.remove('active');
+    });
+</script>
